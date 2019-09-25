@@ -18,12 +18,13 @@ De app bevat ook verschillende functies:
 
 ## Vereisten bij de functies
 ### Time management
-![Voorbeeld_Time_Management](./img/voorbeeld_time_management.PNG)
 * Eigen agenda per gebruiker
 * Gebeurtenissen indelen in categorieën die te onderscheiden zijn per kleur.
 * Categorie kleuren kunnen aanpassen
 * Agenda kunnen delen
 * Agenda kunnen koppelen aan andere agenda's
+
+![Voorbeeld_Time_Management](./img/voorbeeld_time_management.PNG)
 
 ### Ondersteuning
 #### Psycho-educatie
