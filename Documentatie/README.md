@@ -24,7 +24,8 @@ De app bevat ook verschillende functies:
 * Agenda kunnen delen
 * Agenda kunnen koppelen aan andere agenda's
 
-![Voorbeeld_Time_Management](./img/voorbeeld_time_management.PNG)
+
+![TimeManagementIdee](./img/voorbeeld_time_management.PNG)
 
 ### Ondersteuning
 #### Psycho-educatie
