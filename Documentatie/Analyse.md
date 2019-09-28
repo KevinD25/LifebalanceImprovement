@@ -14,7 +14,9 @@ Het project dat we hebben gekozen is een applicatie met als doel jongeren tussen
 De main menu willen we samenstellen uit 3 componenten :
 
 *De tip van de dag : een tip of een quote die iedere dag zal veranderen. Elke dag zal men een nieuwe tip van de dag uit een firebase krijgen.
+
 *Agenda : een klein overzicht van wat de gebruiker vandaag heeft gedaan/nog gaat doen.
+
 *Doelstellingen : elke doelstelling laat zich 1 voor 1 zien als reminder aan de gebruiker zijn doelen.
 
 Elk van deze componenten zal clickable zijn en de gebruiker brengen naar dit component, als men dus op de agenda component drukt zal men de gehele agenda zien.
