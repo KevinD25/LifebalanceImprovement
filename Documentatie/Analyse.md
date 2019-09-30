@@ -40,7 +40,7 @@ De doelstellingen pagina zal de gebruiker de mogelijkheid geven om zijn/haar doe
          
            
 ### Profiel
-Hier staat algemene informatie over de gebruiker. Dit zal dus de naam, leeftijd en andere info zijn en zal ook de mogelijkheid geven om wachtwoord aan te passen.
+Hier staat algemene informatie over de gebruiker. Dit zal dus de naam, leeftijd en andere info zijn met eventueel een foto van de gebruiker zelf. Hier zal ook de mogelijkheid gegeven worden om je wachtwoord aan te passen.
 
 ### Oefeningen
 Deze pagina zal simpelweg toegang geven naar de mindfulness en happiness oefeningen die ter beschikking staan in de applicatie. Dit kan simpelweg via 2 knoppen die de keuze aanbieden. Deze oefeningen zullen ook weer uit een database komen zodat men later op elk moment nog oefeningen kan toevoegen aan de lijst. Oefeningen kunnen altijd aangepast worden of toegevoegd/verwijdert worden door de hosts van de database indien er nood is aan meer oefeningen of als een oefening niet in orde is.
