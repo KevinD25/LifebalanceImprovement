@@ -29,6 +29,8 @@ De agenda zal de mogelijkheid geven aan de gebruiker om alle dagelijkse activite
 
 ![TimeManagementIdee](./img/time_management.PNG)
 
+
+
 ### Doelstellingen
 De doelstellingen pagina zal de gebruiker de mogelijkheid geven om zijn/haar doelen voor een bepaalde dag of in het algemeen op te slaan hierbij notities te zetten over bijvoorbeeld vooruitgang bij dit doel of andere eventuele opmerkingen. Dit zal ook allemaal opgeslagen worden in een database. 
 
