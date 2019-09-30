@@ -32,6 +32,8 @@ De agenda zal de mogelijkheid geven aan de gebruiker om alle dagelijkse activite
 ### Doelstellingen
 De doelstellingen pagina zal de gebruiker de mogelijkheid geven om zijn/haar doelen voor een bepaalde dag of in het algemeen op te slaan hierbij notities te zetten over bijvoorbeeld vooruitgang bij dit doel of andere eventuele opmerkingen. Dit zal ook allemaal opgeslagen worden in een database. 
 
+![Doelstellingen](./img/tChecklist.PNG)
+
 ### Profiel
 Hier staat algemene informatie over de gebruiker. Dit zal dus de naam, leeftijd en andere info zijn en zal ook de mogelijkheid geven om wachtwoord aan te passen.
 
