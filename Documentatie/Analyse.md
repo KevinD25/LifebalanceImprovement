@@ -45,6 +45,9 @@ Hier staat algemene informatie over de gebruiker. Dit zal dus de naam, leeftijd 
 ### Oefeningen
 Deze pagina zal simpelweg toegang geven naar de mindfulness en happiness oefeningen die ter beschikking staan in de applicatie. Dit kan simpelweg via 2 knoppen die de keuze aanbieden. Deze oefeningen zullen ook weer uit een database komen zodat men later op elk moment nog oefeningen kan toevoegen aan de lijst. Oefeningen kunnen altijd aangepast worden of toegevoegd/verwijdert worden door de hosts van de database indien er nood is aan meer oefeningen of als een oefening niet in orde is.
 
+### Instellingen
+De instellingen pagina zorgt ervoor dat de gebruiker de app kan personaliseren naar zijn wens. Dit houdt dan bijvoorbeeld in de kleuren van sommige delen en de algemene layout van de app. Op deze pagina gaat het ook mogelijk zijn om bijvoorbeeld zelf te kiezen welke reminders er mogen verschijnen en wanneer deze reminders moeten verschijnen zodat iedere gebruiker dit kan aanpassen naar zijn wens.
+
 
 ## MockUp
 
