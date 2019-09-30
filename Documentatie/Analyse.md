@@ -27,6 +27,8 @@ Elk van deze componenten zal clickable zijn en de gebruiker brengen naar deze co
 ### Agenda
 De agenda zal de mogelijkheid geven aan de gebruiker om alle dagelijkse activiteiten te tracken. Elke toevoeging aan de agenda zal volledig personaliseerbaar zijn in kleur en look. De gebruiker zal hierbij kunnen tracken wat hij elke dag doet en zal ook een mooi overzicht krijgen van welke activiteiten de meeste tijd op zich nemen en welke de minste tijd nemen. Dit overzicht zal worden gerepresenteerd als een pie chart. Deze agenda zal kunnen gesychroniseerd worden of zal grotendeels een geintegreerde Google agenda zijn omdat deze al helemaal customizable is.
 
+![TimeManagementIdee](./img/time_management.PNG)
+
 ### Doelstellingen
 De doelstellingen pagina zal de gebruiker de mogelijkheid geven om zijn/haar doelen voor een bepaalde dag of in het algemeen op te slaan hierbij notities te zetten over bijvoorbeeld vooruitgang bij dit doel of andere eventuele opmerkingen. Dit zal ook allemaal opgeslagen worden in een database. 
 
