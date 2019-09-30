@@ -48,3 +48,4 @@ Deze pagina zal simpelweg toegang geven naar de mindfulness en happiness oefenin
 
 ## MockUp
 
+![Moq](./img/Moq.png)
