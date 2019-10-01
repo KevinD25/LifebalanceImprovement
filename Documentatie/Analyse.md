@@ -1,15 +1,17 @@
 # Analyse
 
 ## Opdracht
-We willen een Applicatie ontwikkelen voor jongeren die hun toe staat om een goed evenwicht te vinden tussen school, ontspanning, slaap en andere activiteiten. Deze applicatie zal ervoor zorgen dat de jongeren de mogelijkheid hebben om na te gaan wat ze doen in het dageijkse leven en helpt hun de ideale balans te vinden.
+Dit project gaat erom om een applicatie voor jongeren (tussen 12 en 18 jaar) te ontwikkelen die hen in staat stelt om een goed evenwicht te vinden tussen school, ontspanning, slaap en andere activiteiten. De applicatie zal hen de mogelijkheid geven om na te gaan wat ze allemaal doen in het dagelijkse leven en hen helpen de ideale balans te vinden.
 
 
 ## Project Beschrijving
-Het project dat we hebben gekozen is een applicatie met als doel jongeren tussen 12 en 18 te helpen om hun ideale life balans te vinden. Deze applicatie zal de gebruiker hoofdzakelijk toestaan om een agenda op te stellen voor hun dagelijkse activiteiten en deze naar wens aan te passen en te personaliseren op de manier die hij/zij zelf wilt. Door de mogelijkheid van personalisatie toe te voegen kan de gebruiker de agenda echt van zichzelf maken waardoor het een fijnere gebruikerservaring zal meegeven. Bij deze applicatie zal ook nog die optie zijn om mindfulness oefeningen en happiness oefeningen uit te voeren. 
-Mindfulness oefeningen dienen om de gebruiker te trainen om zich meer op de hoogte te houden van het huidige moment waar hij/zij zich in bevindt terwijl de happiness oefeningen meer dienen om de gebruiker te trainen om meer geluk te vinden op elk moment van de dag. 
-De applicatie zal ook de mogelijkheid geven om de gebruiker zijn doelstellingen te tracken en hierbij notities toe te voegen. Hierdoor kan de gebruiker zich altijd focussen op de dingen die hij/zij wilt bereiken binnen een bepaalde tijdspanne en kan hij eventueel altijd vooruitgang noteren bij deze doelen. Om de gebruiker hiervoor nog extra gemotiveerd te houden zal hij beloningen krijgen bij het bereiken van deze doelen. 
-Tenslotte willen we hierbij nog toegang bieden tot verschillende externe hulpdiensten door deze diensten hun contact gegevens ten alle tijden beschikbaar te maken via onze applicatie. Dit project zal helemaal geschreven worden in Ionic zodat we een PWA kunnen maken die zowel op Android als op IoS zal werken.
-
+Voor dit project zullen we een applicatie creëren die gericht is op jongeren tussen de 12 en 18 jaar oud. Het doel van deze applicatie is om hen te helpen met het vinden van hun ideale life balance. Dit wordt door de applicatie op een preventieve manier aangebracht bij deze jongeren door hen de toegang te bieden tot het gebruik van een agenda en andere zaken die hier essentieel in zijn. 
+Zo zal er naast een personaliseerbare agenda ook toegang zijn tot mindfulness en happiness oefeningen die door de jongeren uit te voeren zijn.
+De mindfulness oefeningen dien om de jongere te trainen om zich meer op de hoogte te houden van het huidige moment waarin hij/zij zich bevindt. Dit terwijl de happiness oefeningen eerder dienen om de jongere te trainen om zich gelukkiger te voelen op verschillende momenten doorheen de dag.
+De applicatie zal personaliseerbaar zijn op verschillende vlakken door de jongere. De jongere kan in zijn agenda bijvoorbeeld niet alleen activiteiten toevoegen, maar deze ook categoriseren en een kleur geven. Persoonlijke doelstellingen kunnen worden toegevoegd worden door de jongere en deze zullen ook te tracken zijn. Er kunnen dan ook nog notities worden toegevoegd aan deze doelstellingen of ergens apart. Op deze manier kan de jongere zich focussen op het behalen van bepaalde doelstellingen, hierbij aantekeningen maken en reminders instellen om zichzelf eraan te doen herinneren.
+Om de jongeren extra motivatie te geven omtrent de doelstellingen, zullen er ook beloningen worden gegeven bij het bereiken van deze doelen.
+Er zal ook vanuit de app toegang worden geboden aan verschillende externe (hulp)diensten. Van deze diensten zullen contactgegevens ten alle tijden beschikbaar zijn via de applicatie.
+De applicatie zal geschreven worden in Ionic, dit zodat er een PWA kan gemaakt worden die zowel op Android als Ios zal werken.
 
 ## Screen per Screen
 
@@ -22,28 +24,27 @@ De main menu willen we samenstellen uit 3 componenten :
 
 * Doelstellingen : elke doelstelling laat zich 1 voor 1 zien als reminder aan de gebruiker zijn doelen.
 
-Elk van deze componenten zal clickable zijn en de gebruiker brengen naar deze component, als men dus bijvoorbeeld op de agenda component drukt zal men de gehele agenda zien.
+Elk van deze componenten zal clickable zijn en de gebruiker een kort detail tonen van datgene waar hij/zij op klikt. Indien de gebruiker dan nog eens klikt zal de applicatie de gebruiker doorsturen naar deze component, als men dus bijvoorbeeld op de agenda component drukt zal men de gehele agenda zien.
 
 ### Agenda
-De agenda zal de mogelijkheid geven aan de gebruiker om alle dagelijkse activiteiten te tracken. Elke toevoeging aan de agenda zal volledig personaliseerbaar zijn in kleur en look. De gebruiker zal hierbij kunnen tracken wat hij elke dag doet en zal ook een mooi overzicht krijgen van welke activiteiten de meeste tijd op zich nemen en welke de minste tijd nemen. Dit overzicht zal worden gerepresenteerd als een pie chart. Deze agenda zal kunnen gesychroniseerd worden of zal grotendeels een geintegreerde Google agenda zijn omdat deze al helemaal customizable is.
+In de agenda zal de gebruiker de mogelijkheid hebben om alle dagelijkse activiteiten te tracken, editen en aan te maken. Elke toevoeging aan de agenda zal volledig personaliseerbaar zijn in kleur en look. Hierbij zal de gebruiker kunnen tracken wat hij elke dag doet en zal hem/haar ook een duidelijk overzicht verkrijgen waarop staat welke activiteiten het meeste en welke het minste tijd innemen. Dit overzicht zal gepresenteerd worden als een pie chart. De agenda zal gesynchroniseerd kunnen worden of zal grotendeels een geïntegreerde Google Agenda zijn omdat dit al ver te customizen is.
 
 ![TimeManagementIdee](./img/time_management.PNG)
     
-
 
 ### Doelstellingen
 De doelstellingen pagina zal de gebruiker de mogelijkheid geven om zijn/haar doelen voor een bepaalde dag of in het algemeen op te slaan hierbij notities te zetten over bijvoorbeeld vooruitgang bij dit doel of andere eventuele opmerkingen. Dit zal ook allemaal opgeslagen worden in een database. 
 
 ![Doelstellingen](./img/Checklist.jpg)
    
-      
-         
-           
+
 ### Profiel
-Hier staat algemene informatie over de gebruiker. Dit zal dus de naam, leeftijd en andere info zijn met eventueel een foto van de gebruiker zelf. Hier zal ook de mogelijkheid gegeven worden om je wachtwoord aan te passen.
+Hier zal de algemene informatie van de gebruiker te vinden zijn. Dit zal dus de naam, leeftijd en andere info zijn met eventueel een foto van de gebruiker zelf. De mogelijkheid om het wachtwoord aan te passen zal ook op deze pagina te vinden zijn.
+
 
 ### Oefeningen
 Deze pagina zal simpelweg toegang geven naar de mindfulness en happiness oefeningen die ter beschikking staan in de applicatie. Dit kan simpelweg via 2 knoppen die de keuze aanbieden. Deze oefeningen zullen ook weer uit een database komen zodat men later op elk moment nog oefeningen kan toevoegen aan de lijst. Oefeningen kunnen altijd aangepast worden of toegevoegd/verwijdert worden door de hosts van de database indien er nood is aan meer oefeningen of als een oefening niet in orde is.
+
 
 ### Instellingen
 De instellingen pagina zorgt ervoor dat de gebruiker de app kan personaliseren naar zijn wens. Dit houdt dan bijvoorbeeld in de kleuren van sommige delen en de algemene layout van de app. Op deze pagina gaat het ook mogelijk zijn om bijvoorbeeld zelf te kiezen welke reminders er mogen verschijnen en wanneer deze reminders moeten verschijnen zodat iedere gebruiker dit kan aanpassen naar zijn wens.
