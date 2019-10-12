@@ -9,22 +9,18 @@
 <ion-content>
   <ion-card class="Doos" (click)="expandItem(item)" *ngFor="let item of items">
     <ion-card-header>
-      <ion-card-title>{{item.plab}}</ion-card-title>
+      <ion-card-title>{{item.Title}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <app-expandable expandHeight="200px" [expanded]="item.expanded">
-          {{item.templateUrl}}
+      <app-expandable expandHeight="191px" [expanded]="item.expanded">
+          {{item.Text}}
           <br>
-          <ion-button (click)="pressButton(item)">
+          <ion-button [routerLink]=item.PageUrl>
+            
               Exercises
             </ion-button>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
+            
             
         
       </app-expandable>

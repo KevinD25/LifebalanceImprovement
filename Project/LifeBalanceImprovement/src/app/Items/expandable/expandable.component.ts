@@ -11,7 +11,7 @@ export class ExpandableComponent implements AfterViewInit {
   // tslint:disable-next-line: no-input-rename
   @Input('expanded') expanded = false;
   // tslint:disable-next-line: no-input-rename
-  @Input('expandHeight') expandHeight = '320px';
+  @Input('expandHeight') expandHeight = '191px';
 
   constructor(public renderer: Renderer2) {}
 
