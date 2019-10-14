@@ -1,10 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Four
+      Exercises
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-card class="Doos" (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header>
+      <ion-card-title>{{item.Title}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <app-expandable expandHeight="800px" [expanded]="item.expanded">
+          {{item.Text}}
+          <br>
+          <ion-button [routerLink]=item.PageUrl>
+            
+              Exercises
+            </ion-button>
+            
+            
+        
+      </app-expandable>
+    </ion-card-content>
+  </ion-card>
+ 
+  
+</ion-content>
 
