@@ -12,11 +12,11 @@
       <ion-card-title>{{item.Title}}</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
-      <app-expandable expandHeight="800px" [expanded]="item.expanded">
+    <ion-card-content >
+      <app-expandable  expandHeight="800px" [expanded]="item.expanded">
           {{item.Text}}
           <br>
-          <ion-button [routerLink]=item.PageUrl>
+          <ion-button color="success" [routerLink]=item.PageUrl>
             
               Exercises
             </ion-button>

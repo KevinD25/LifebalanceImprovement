@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class Tab5Page {
 
-  constructor() {}
+  public Profileitems: any;
+
+  constructor() {
+
+    this.Profileitems = 
+    {
+      ImgUrl : "URL",Name : "Kevin", Age : 420,Gender : 'Apache Helicopter'
+    }
+  }
 
 }
