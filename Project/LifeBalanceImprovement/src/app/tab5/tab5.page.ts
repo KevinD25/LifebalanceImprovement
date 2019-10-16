@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tab5',
   templateUrl: 'tab5.page.html',
@@ -7,6 +10,12 @@ import { Component } from '@angular/core';
 })
 export class Tab5Page {
 
-  constructor() {}
+  constructor(private authService: AuthService,
+    private router: Router) {}
+
+  onLogout() {
+this.authService.logout();
+this.router.navigateByUrl('/auth');
+  }
 
 }
