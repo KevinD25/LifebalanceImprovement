@@ -43,6 +43,7 @@ export class AuthPage implements OnInit {
             console.log(resData);
             this.isLoading = false;
             loadingEl.dismiss();
+            console.log('NAVIGATING');
             this.router.navigateByUrl('/tabs');
           },
           errRes => {
