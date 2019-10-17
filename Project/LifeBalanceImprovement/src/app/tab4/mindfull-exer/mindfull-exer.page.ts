@@ -18,7 +18,7 @@ export class MindfullExerPage implements OnInit{
   {
     
     
-    this.crudService.read_Users("MindfullEx").subscribe(data => {
+    this.crudService.read_Entries("MindfullEx").subscribe(data => {
  
       this.Exercises = data.map(e => {
         return {
@@ -36,7 +36,7 @@ export class MindfullExerPage implements OnInit{
     let record = {};
     record['Exercise'] = this.Exercise;
    
-    this.crudService.create_NewUser(record,"MindfullEx").then(resp => {
+    this.crudService.create_Entries(record,"MindfullEx").then(resp => {
       this.Exercise = "";
      
       console.log(resp);

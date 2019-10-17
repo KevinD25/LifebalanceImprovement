@@ -18,7 +18,7 @@ export class HappyExerPage  implements OnInit{
   {
     
     
-    this.crudService.read_Users("HappyEx").subscribe(data => {
+    this.crudService.read_Entries("HappyEx").subscribe(data => {
  
       this.Exercises = data.map(e => {
         return {
@@ -36,7 +36,7 @@ export class HappyExerPage  implements OnInit{
     let record = {};
     record['Exercise'] = this.Exercise;
    
-    this.crudService.create_NewUser(record,"HappyEx").then(resp => {
+    this.crudService.create_Entries(record,"HappyEx").then(resp => {
       this.Exercise = "";
      
       console.log(resp);

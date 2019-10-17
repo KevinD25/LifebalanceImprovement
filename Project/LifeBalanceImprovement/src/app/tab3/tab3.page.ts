@@ -8,39 +8,40 @@ import { CRUDServiceService } from '../services/crudservice.service';
 })
 export class Tab3Page implements OnInit{
 
-  Users: any;
-  UserName: string;
-  UserAge: number;
-  UserEmail: string;
+  Goals: any;
+  GoalTitle: string;
+  GoalDescription: string;
+  Check : Boolean;
+
  
   constructor(private crudService: CRUDServiceService) { }
  
   ngOnInit() {
-    this.crudService.read_Users("Users").subscribe(data => {
+    this.crudService.read_Entries("Goals").subscribe(data => {
  
-      this.Users = data.map(e => {
+      this.Goals = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Age: e.payload.doc.data()['Age'],
-          Address: e.payload.doc.data()['Address'],
+          GoalTitle: e.payload.doc.data()['GoalTitle'],
+          GoalDescription: e.payload.doc.data()['GoalDescription'],
+          
         };
+        
       })
-      console.log(this.Users);
+      
+      console.log(this.Goals);
  
     });
   }
  
   CreateRecord() {
     let record = {};
-    record['Name'] = this.UserName;
-    record['Age'] = this.UserAge;
-    record['Address'] = this.UserEmail;
-    this.crudService.create_NewUser(record,"Users").then(resp => {
-      this.UserName = "";
-      this.UserAge = undefined;
-      this.UserEmail = "";
+    record['GoalTitle'] = this.GoalTitle;
+    record['GoalDescription'] = this.GoalDescription;
+    this.crudService.create_Entries(record,"Goals").then(resp => {
+      this.GoalTitle = "";
+      this.GoalDescription = "";
       console.log(resp);
     })
       .catch(error => {
@@ -49,24 +50,26 @@ export class Tab3Page implements OnInit{
   }
  
   RemoveRecord(rowID) {
-    this.crudService.delete_Users(rowID,"Users");
+    this.crudService.delete_Entries(rowID,"Goals");
   }
  
   EditRecord(record) {
     record.isEdit = true;
-    record.EditName = record.Name;
-    record.EditAge = record.Age;
-    record.EditAddress = record.Address;
+    record.EditGoal = record.GoalTitle;
+    record.EditDescription = record.GoalDescription;
+
+    
+    console.log(this.Check);
   }
  
   UpdateRecord(recordRow) {
     let record = {};
-    record['Name'] = recordRow.EditName;
-    record['Age'] = recordRow.EditAge;
-    record['Address'] = recordRow.EditAddress;
-    this.crudService.update_Users(recordRow.id, record,"Users");
+    record['GoalTitle'] = recordRow.EditGoal;
+    record['GoalDescription'] = recordRow.EditDescription;
+    this.crudService.update_Entries(recordRow.id, record,"Goals");
     recordRow.isEdit = false;
   }
+
  
  
 }
