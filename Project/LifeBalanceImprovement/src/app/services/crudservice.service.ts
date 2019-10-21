@@ -7,19 +7,19 @@ export class CRUDServiceService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  create_NewUser(record,Table) {
+  create_Entries(record,Table) {
     return this.firestore.collection(Table).add(record);
   }
 
-  read_Users(Table) {
+  read_Entries(Table) {
     return this.firestore.collection(Table).snapshotChanges();
   }
 
-  update_Users(recordID,record,Table){
+  update_Entries(recordID,record,Table){
     this.firestore.doc(Table+'/' + recordID).update(record);
   }
 
-  delete_Users(record_id,Table) {
+  delete_Entries(record_id,Table) {
     this.firestore.doc(Table+'/' + record_id).delete();
   }
 }
