@@ -16,15 +16,17 @@
           <ion-input placeholder="Goal" [(ngModel)]="GoalTitle"></ion-input>
         </ion-item>
       </ion-col>
+      <!--
       <ion-col>
         <ion-item>
           <ion-input placeholder="Description" [(ngModel)]="GoalDescription"></ion-input>
         </ion-item>
       </ion-col>
+      -->
     </ion-row>
     <ion-row>
       <ion-col text-center>
-        <ion-button (click)="CreateRecord()" [disabled]="!GoalTitle  || !GoalDescription">
+        <ion-button (click)="CreateRecord()" [disabled]="!GoalTitle ">
           <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
           &nbsp;Create Record
         </ion-button>

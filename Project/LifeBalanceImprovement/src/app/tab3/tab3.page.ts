@@ -38,7 +38,7 @@ export class Tab3Page implements OnInit{
   CreateRecord() {
     let record = {};
     record['GoalTitle'] = this.GoalTitle;
-    record['GoalDescription'] = this.GoalDescription;
+    record['GoalDescription'] = " ";
     this.crudService.create_Entries(record,"Goals").then(resp => {
       this.GoalTitle = "";
       this.GoalDescription = "";
