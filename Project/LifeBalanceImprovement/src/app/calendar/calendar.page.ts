@@ -10,8 +10,9 @@ export class CalendarPage implements OnInit {
 
   eventSource = [];
 
+  view = 'day';
   calendar = {
-    mode: 'month',
+    mode: this.view,
     currentDate: new Date(),
   };
   selectedDate = new Date();
@@ -37,6 +38,10 @@ export class CalendarPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  ViewChanged() {
+    this.calendar.mode = this.view;
   }
 
   addNewEvent() {

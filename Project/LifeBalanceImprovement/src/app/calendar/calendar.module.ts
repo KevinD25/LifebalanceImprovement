@@ -24,6 +24,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgCalendarModule
   ],
+  exports: [CalendarPage],
   declarations: [CalendarPage]
 })
 export class CalendarPageModule {}

@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
+    <select name="view" [(ngModel)]="view" (change)="ViewChanged()">
+        <option value="month">Maand</option>
+        <option value="week">Week</option>
+        <option value="day">Dag</option>
+      </select>
+
   <calendar [eventSource]="eventSource"
   [calendarMode]="calendar.mode"
   [currentDate]="calendar.currentDate"

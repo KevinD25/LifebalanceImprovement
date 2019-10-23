@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
+import { CalendarPageModule } from '../calendar/calendar.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    CalendarPageModule,
     TabsPageRoutingModule
   ],
   declarations: [TabsPage]
