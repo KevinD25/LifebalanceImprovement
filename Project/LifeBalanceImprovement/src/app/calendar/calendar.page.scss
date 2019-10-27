@@ -1,0 +1,14 @@
+.my-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 20;
+    top: 0;
+    left: 0;
+  }
+
+.textBalloon{
+  background-color: white;
+  z-index: 21;
+}

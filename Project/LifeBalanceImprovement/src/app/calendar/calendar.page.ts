@@ -21,6 +21,9 @@ export class CalendarPage implements OnInit {
   lastTime: string = '';
   fullDay: boolean =  false;
   addEvent: boolean;
+  eventSelected: boolean = false;
+
+  overlayHidden: boolean = true;
 
   constructor(private db: AngularFirestore) {
     this.addEvent = false;
@@ -42,6 +45,12 @@ export class CalendarPage implements OnInit {
 
   ViewChanged() {
     this.calendar.mode = this.view;
+    this.addEvent = false;
+  }
+
+  cancelCreatingEvent(){
+    this.addEvent = false;
+    this.overlayHidden = true;
   }
 
   addNewEvent() {
@@ -59,7 +68,6 @@ export class CalendarPage implements OnInit {
       end.setHours(+hours[0]);
       end.setMinutes(+hours[1]);
     }
-    
 
     let event = {
       title: this.titleEvent,
@@ -75,6 +83,7 @@ export class CalendarPage implements OnInit {
 
   EventAddButtonPressed(){
     this.addEvent = true;
+    this.hideOverlay();
   }
 
   onViewTitleChanged(title) {
@@ -83,12 +92,44 @@ export class CalendarPage implements OnInit {
 
   onEventSelected(event) {
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    this.eventSelected = true;
   }
 
   onTimeSelected(ev) {
     console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
       (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
     this.selectedDate = ev.selectedTime;
+    if (!this.eventSelected){
+      if (this.selectedDate.getHours() < 10) {
+        if (this.selectedDate.getMinutes() < 10) {
+          this.firstTime = '0' + this.selectedDate.getHours().toString() + ':0' + this.selectedDate.getMinutes().toString();
+        } else {
+          this.firstTime = '0' + this.selectedDate.getHours().toString() + ':' + this.selectedDate.getMinutes().toString();
+        }
+      } else if (this.selectedDate.getHours() >= 10){
+        if (this.selectedDate.getMinutes() < 10) {
+          this.firstTime = this.selectedDate.getHours().toString() + ':0' + this.selectedDate.getMinutes().toString();
+        } else {
+          this.firstTime = this.selectedDate.getHours().toString() + ':' + this.selectedDate.getMinutes().toString();
+        }
+      }
+      if (this.selectedDate.getHours() + 1 < 10) {
+        if (this.selectedDate.getMinutes() < 10) {
+          this.lastTime = '0' + (this.selectedDate.getHours() + 1).toString() + ':0' + this.selectedDate.getMinutes().toString();
+        } else {
+          this.lastTime = '0' + (this.selectedDate.getHours() + 1).toString() + ':' + this.selectedDate.getMinutes().toString();
+        }
+      } else if (this.selectedDate.getHours() >= 10){
+        if (this.selectedDate.getMinutes() < 10) {
+          this.lastTime = (this.selectedDate.getHours() + 1).toString() + ':0' + this.selectedDate.getMinutes().toString();
+        } else {
+          this.lastTime = (this.selectedDate.getHours() + 1).toString() + ':' + this.selectedDate.getMinutes().toString();
+        }
+      }
+      console.log(this.firstTime);
+      console.log((this.selectedDate.getHours() + 1).toString());
+      this.EventAddButtonPressed();
+    }
   }
 
   onCurrentDateChanged(event: Date) {
@@ -99,4 +140,7 @@ export class CalendarPage implements OnInit {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
+  public hideOverlay() {
+    this.overlayHidden = false;
+  }
 }
