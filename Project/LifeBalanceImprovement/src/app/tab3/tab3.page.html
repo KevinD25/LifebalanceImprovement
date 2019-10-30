@@ -17,32 +17,7 @@
           <ion-icon  name="add"></ion-icon>
       </ion-button>
    </ion-col> 
-  <ion-grid fixed>
-    <ion-row>
-        
-      <ion-col>
-        <ion-item>
-          <ion-input placeholder="Goal" [(ngModel)]="GoalTitle"></ion-input>
-        </ion-item>
-      </ion-col>
-     
-      <ion-col>
-        <ion-item>
-          <ion-input placeholder="(Notes)" [(ngModel)]="GoalNotes"></ion-input>
-        </ion-item>
-      </ion-col>
-      
-    </ion-row>
-    <ion-row>
-      <ion-col text-center>
-        <ion-button (click)="CreateRecord()" [disabled]="!GoalTitle ">
-          <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
-          &nbsp;Create Record
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
- 
+  
  
   <ion-card *ngFor="let item of Goals">
     <span *ngIf="!item.isEdit; else elseBlock">
