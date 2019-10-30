@@ -10,17 +10,27 @@ import { stringify } from 'querystring';
 export class Tab3Page implements OnInit{
 
   Goals: any;
+  Notes : any;
   GoalTitle: string;
   GoalNotes: string;
   TodayDay : number;
   TodayMonth : number;
   TodayYear:number;
-  INPUTGOAL : string;
-  INPUTDATE: Date;
   TodayDate : string;
+  NoteHolder : string[] = [];
+  NoteIDHolder : string[] = [];
+  NoteRecord : any = [];
 
  
-  constructor(private crudService: CRUDServiceService,public alertController: AlertController) { }
+  constructor(private crudService: CRUDServiceService,public alertController: AlertController) 
+  {
+
+    this.NoteRecord = {
+      GoalID : "",Note : ""
+    }
+   
+    
+  }
  
   ngOnInit() {
     this.TodayDay = new Date().getDate();
@@ -28,29 +38,62 @@ export class Tab3Page implements OnInit{
     this.TodayMonth = this.TodayMonth+1;
 
     this.TodayYear = new Date().getFullYear();
-    console.log(this.TodayDay);
-    console.log(this.TodayMonth);
-    console.log(this.TodayYear);
+    
 
     this.TodayDate =this.TodayYear + "-" + this.TodayMonth + "-" + this.TodayDay;
-    console.log(this.TodayDate);
     this.crudService.read_Entries("Goals").subscribe(data => {
- 
       this.Goals = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          GoalId : e.payload.doc.data()['ID'],
           GoalTitle: e.payload.doc.data()['GoalTitle'],
-          GoalNotes: e.payload.doc.data()['GoalDate'],
-          
+          GoalDate: e.payload.doc.data()['GoalDate'],
+          Notes : this.NoteHolder,
+          NoteIDs : this.NoteIDHolder,
         };
+      })
+    });
+   
+    this.crudService.read_Entries("Notes").subscribe(data2 => {
+
+        this.Notes = data2.map(E => {
+          return{
+            id: E.payload.doc.id,
+            GoalID : E.payload.doc.data()['GoalID'],
+            Note : E.payload.doc.data()['Note']
+  
+          };
+  
+        });
+
+        console.log(this.Notes);
+  
+        this.Goals.forEach(elemGoal => {
+          this.Notes.forEach(elemNote => {
+            if(elemNote.GoalID == elemGoal.id)
+            {
+              
+              this.NoteIDHolder.push(elemNote.id);
+             this.NoteHolder.push(elemNote.Note);
+            }
+          });
+          
+          elemGoal.Notes = this.NoteHolder;
+          elemGoal.NoteIDs = this.NoteIDHolder;
+          console.log(this.NoteIDHolder);
+          console.log(this.NoteHolder);
+          this.NoteIDHolder = [];
+          this.NoteHolder = [];
+
+        });
+        console.log(this.Goals);
         
       })
-      
-      console.log(this.Goals);
- 
-    });
+    
+    
+
+
+
   }
  
   
@@ -90,6 +133,18 @@ export class Tab3Page implements OnInit{
     recordRow.isEdit = false;
   }
 
+  AddNote(ID : string)
+  {
+    this.NoteRecord['GoalID'] = ID;
+    this.AlertNote();
+  }
+  RemoveNote(I,J)
+{
+ 
+  this.crudService.delete_Entries(this.Goals[I].NoteIDs[J],"Notes");
+  
+}
+
   
 
  
@@ -126,6 +181,54 @@ export class Tab3Page implements OnInit{
           handler: data => {
             console.log('Confirm Ok');
             this.createRecord(data.Goal,data.Date);
+            
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+
+
+  async AlertNote() {
+    const alert = await this.alertController.create({
+      header: 'Voer in',
+      subHeader : 'Vul hier uw notitie in',
+      inputs: [
+        {
+          name: 'Note',
+          type: 'text',
+          placeholder: 'Notes'
+        }
+      
+       
+        
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: data => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: data => {
+            console.log('Confirm Ok');
+            if(data.Note != null)
+            {
+              this.NoteRecord["Note"] = data.Note;
+              this.crudService.create_Entries(this.NoteRecord,"Notes");
+              this.NoteHolder = [];
+              this.NoteIDHolder = [];
+              this.Goals.forEach(elemGoal => {
+                
+                elemGoal.Notes = this.NoteHolder;
+      
+              });
+            }
             
           }
         }

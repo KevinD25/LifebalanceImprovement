@@ -19,15 +19,31 @@
    </ion-col> 
   
  
-  <ion-card *ngFor="let item of Goals">
+  <ion-card *ngFor="let item of Goals;let i = index">
     <span *ngIf="!item.isEdit; else elseBlock">
       <ion-card-header>
-        <ion-card-title>{{item.GoalTitle}}
-        </ion-card-title>
-        <ion-card-subtitle>{{item.GoalNotes}} </ion-card-subtitle>
+
+          
+        <ion-card-title>{{item.GoalTitle}}</ion-card-title>
+
         
+        
+        <ion-card-subtitle>{{item.GoalDate}}  </ion-card-subtitle>
+        
+        <ion-card *ngFor="let I of item.Notes; let j = index" > {{I}} <ion-button shape="round" color="danger" size="small" (click)="RemoveNote(i,j)">
+            <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+            
+   
+          </ion-button> </ion-card>
+        
+         
       </ion-card-header>
       <ion-card-content>
+
+          <ion-button shape="round" color="success" size="small" (click)="AddNote(item.id)">
+              <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+              </ion-button>
+        
  
         <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
           <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
@@ -35,8 +51,11 @@
         </ion-button>
         <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
           <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+          
  
         </ion-button>
+        
+        
       </ion-card-content>
     </span>
     <ng-template #elseBlock>
