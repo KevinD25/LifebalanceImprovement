@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CRUDServiceService } from '../services/crudservice.service';
 import { AlertController } from '@ionic/angular';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -11,24 +12,37 @@ export class Tab3Page implements OnInit{
   Goals: any;
   GoalTitle: string;
   GoalNotes: string;
-  Check : Boolean;
-  Today : Date;
-  test : string;
+  TodayDay : number;
+  TodayMonth : number;
+  TodayYear:number;
+  INPUTGOAL : string;
+  INPUTDATE: Date;
+  TodayDate : string;
 
  
   constructor(private crudService: CRUDServiceService,public alertController: AlertController) { }
  
   ngOnInit() {
-    this.Today = new Date();
-    console.log(this.Today);
+    this.TodayDay = new Date().getDate();
+    this.TodayMonth = new Date().getMonth();
+    this.TodayMonth = this.TodayMonth+1;
+
+    this.TodayYear = new Date().getFullYear();
+    console.log(this.TodayDay);
+    console.log(this.TodayMonth);
+    console.log(this.TodayYear);
+
+    this.TodayDate =this.TodayYear + "-" + this.TodayMonth + "-" + this.TodayDay;
+    console.log(this.TodayDate);
     this.crudService.read_Entries("Goals").subscribe(data => {
  
       this.Goals = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
+          GoalId : e.payload.doc.data()['ID'],
           GoalTitle: e.payload.doc.data()['GoalTitle'],
-          GoalNotes: e.payload.doc.data()['GoalNotes'],
+          GoalNotes: e.payload.doc.data()['GoalDate'],
           
         };
         
@@ -39,46 +53,16 @@ export class Tab3Page implements OnInit{
     });
   }
  
-  CreateRecord() {
-    let record = {};
-    record['GoalTitle'] = this.GoalTitle;
-    if(this.GoalNotes == null)
-    {
-      record['GoalNotes'] = " ";
-    }
-    else
-    {
-       record['GoalNotes'] = this.GoalNotes;
-    }
-   
-
-    this.crudService.create_Entries(record,"Goals").then(resp => {
-      this.GoalTitle = "";
-      this.GoalNotes = "";
-      console.log(resp);
-    })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  
  
 
   createRecord(Goal : string, Date : Date) {
     let record = {};
-    record['GoalTitle'] = this.GoalTitle;
-    if(this.GoalNotes == null)
-    {
-      record['GoalNotes'] = " ";
-    }
-    else
-    {
-       record['GoalNotes'] = this.GoalNotes;
-    }
+    record['GoalTitle'] = Goal;
+    record['GoalDate'] = Date;
    
 
     this.crudService.create_Entries(record,"Goals").then(resp => {
-      this.GoalTitle = "";
-      this.GoalNotes = "";
       console.log(resp);
     })
       .catch(error => {
@@ -95,13 +79,13 @@ export class Tab3Page implements OnInit{
     record.EditNotes = record.GoalNotes;
 
     
-    console.log(this.Check);
+  
   }
  
   UpdateRecord(recordRow) {
     let record = {};
     record['GoalTitle'] = recordRow.EditGoal;
-    record['GoalNotes'] = recordRow.EditNotes;
+    record['GoalDate'] = recordRow.EditNotes;
     this.crudService.update_Entries(recordRow.id, record,"Goals");
     recordRow.isEdit = false;
   }
@@ -115,14 +99,14 @@ export class Tab3Page implements OnInit{
       subHeader : 'Welk Doel wilt u bereiken tegen wanneer?',
       inputs: [
         {
-          name: 'Goal:',
+          name: 'Goal',
           type: 'text',
           placeholder: 'Goal'
         },
         {
          name: 'Date',
          type: 'date',
-         min: '2019-03-01',
+         min : this.TodayDate,
          max: '2020-01-12'
          }
       
@@ -141,9 +125,7 @@ export class Tab3Page implements OnInit{
           text: 'Ok',
           handler: data => {
             console.log('Confirm Ok');
-            console.log(data);
-            this.test = JSON.stringify(data);
-            console.log();
+            this.createRecord(data.Goal,data.Date);
             
           }
         }
