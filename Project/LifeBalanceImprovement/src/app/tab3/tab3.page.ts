@@ -12,11 +12,15 @@ export class Tab3Page implements OnInit{
   GoalTitle: string;
   GoalNotes: string;
   Check : Boolean;
+  Today : Date;
+  test : string;
 
  
   constructor(private crudService: CRUDServiceService,public alertController: AlertController) { }
  
   ngOnInit() {
+    this.Today = new Date();
+    console.log(this.Today);
     this.crudService.read_Entries("Goals").subscribe(data => {
  
       this.Goals = data.map(e => {
@@ -58,6 +62,29 @@ export class Tab3Page implements OnInit{
       });
   }
  
+
+  createRecord(Goal : string, Date : Date) {
+    let record = {};
+    record['GoalTitle'] = this.GoalTitle;
+    if(this.GoalNotes == null)
+    {
+      record['GoalNotes'] = " ";
+    }
+    else
+    {
+       record['GoalNotes'] = this.GoalNotes;
+    }
+   
+
+    this.crudService.create_Entries(record,"Goals").then(resp => {
+      this.GoalTitle = "";
+      this.GoalNotes = "";
+      console.log(resp);
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   RemoveRecord(rowID) {
     this.crudService.delete_Entries(rowID,"Goals");
   }
@@ -84,61 +111,40 @@ export class Tab3Page implements OnInit{
  
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
-      header: 'Prompt!',
+      header: 'Voer in',
+      subHeader : 'Welk Doel wilt u bereiken tegen wanneer?',
       inputs: [
         {
-          name: 'name1',
+          name: 'Goal:',
           type: 'text',
-          placeholder: 'Placeholder 1'
+          placeholder: 'Goal'
         },
         {
-          name: 'name2',
-          type: 'text',
-          id: 'name2-id',
-          value: 'hello',
-          placeholder: 'Placeholder 2'
-        },
-        {
-          name: 'name3',
-          value: 'http://ionicframework.com',
-          type: 'url',
-          placeholder: 'Favorite site ever'
-        },
-        // input date with min & max
-        {
-          name: 'name4',
-          type: 'date',
-          min: '2017-03-01',
-          max: '2018-01-12'
-        },
-        // input date without min nor max
-        {
-          name: 'name5',
-          type: 'date'
-        },
-        {
-          name: 'name6',
-          type: 'number',
-          min: -5,
-          max: 10
-        },
-        {
-          name: 'name7',
-          type: 'number'
-        }
+         name: 'Date',
+         type: 'date',
+         min: '2019-03-01',
+         max: '2020-01-12'
+         }
+      
+       
+        
       ],
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
+          handler: data => {
             console.log('Confirm Cancel');
           }
         }, {
           text: 'Ok',
-          handler: () => {
+          handler: data => {
             console.log('Confirm Ok');
+            console.log(data);
+            this.test = JSON.stringify(data);
+            console.log();
+            
           }
         }
       ]
