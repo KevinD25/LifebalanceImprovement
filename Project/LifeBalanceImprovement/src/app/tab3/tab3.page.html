@@ -8,21 +8,30 @@
 </ion-header>
  
 <ion-content padding>
- 
+  <ion-grid>
+   
+      
+  </ion-grid>
+  <ion-col>
+      <ion-button color="success" (click)="presentAlertPrompt()">
+          <ion-icon  name="add"></ion-icon>
+      </ion-button>
+   </ion-col> 
   <ion-grid fixed>
     <ion-row>
+        
       <ion-col>
         <ion-item>
           <ion-input placeholder="Goal" [(ngModel)]="GoalTitle"></ion-input>
         </ion-item>
       </ion-col>
-      <!--
+     
       <ion-col>
         <ion-item>
-          <ion-input placeholder="Description" [(ngModel)]="GoalDescription"></ion-input>
+          <ion-input placeholder="(Notes)" [(ngModel)]="GoalNotes"></ion-input>
         </ion-item>
       </ion-col>
-      -->
+      
     </ion-row>
     <ion-row>
       <ion-col text-center>
@@ -40,7 +49,7 @@
       <ion-card-header>
         <ion-card-title>{{item.GoalTitle}}
         </ion-card-title>
-        <ion-card-subtitle>{{item.GoalDescription}} </ion-card-subtitle>
+        <ion-card-subtitle>{{item.GoalNotes}} </ion-card-subtitle>
         
       </ion-card-header>
       <ion-card-content>
@@ -83,8 +92,8 @@
           <ion-input type="text" [(ngModel)]="item.EditGoal"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Description</strong></ion-label>
-          <ion-input type="text" [(ngModel)]="item.EditDescription"></ion-input>
+          <ion-label><strong>Notes</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditNotes"></ion-input>
         </ion-item>
       
       </ion-card-content>
