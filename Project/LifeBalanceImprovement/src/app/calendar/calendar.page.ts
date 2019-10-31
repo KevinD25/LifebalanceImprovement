@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CalendarService } from '../services/calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -8,13 +9,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class CalendarPage implements OnInit {
 
-  eventSource = [];
-
+  pageTitle: string;
   view = 'day';
-  calendar = {
-    mode: this.view,
-    currentDate: new Date(),
-  };
   selectedDate = new Date();
   titleEvent: string;
   firstTime: string = '';
@@ -25,31 +21,21 @@ export class CalendarPage implements OnInit {
 
   overlayHidden: boolean = true;
 
-  constructor(private db: AngularFirestore) {
-    this.addEvent = false;
-    this.db.collection(`Events`).snapshotChanges().subscribe(colSnap => {
-      this.eventSource = [];
-      colSnap.forEach(snap => {
-        let event:any = snap.payload.doc.data();
-        event.id = snap.payload.doc.id;
-        event.startTime = event.startTime.toDate();
-        event.endTime = event.endTime.toDate();
-        console.log(event);
-        this.eventSource.push(event);
-      });
-    });
+  constructor(private db: AngularFirestore, protected service: CalendarService) {
+    this.service.setAddEvent(false);
+    this.onViewTitleChanged(service.getTitle());
    }
 
   ngOnInit() {
   }
 
   ViewChanged() {
-    this.calendar.mode = this.view;
-    this.addEvent = false;
+    this.service.setView(this.view);
+    this.service.setAddEvent(false);
   }
 
   cancelCreatingEvent(){
-    this.addEvent = false;
+    this.service.setAddEvent(false);
     this.overlayHidden = true;
   }
 
@@ -75,19 +61,19 @@ export class CalendarPage implements OnInit {
       endTime: end,
       allDay: this.fullDay
     };
-    console.log(event);
 
     this.db.collection(`Events`).add(event);
-    this.addEvent = false;
+    this.service.setAddEvent(false);
   }
 
   EventAddButtonPressed(){
-    this.addEvent = true;
+    this.service.setAddEvent(true);
     this.hideOverlay();
   }
 
   onViewTitleChanged(title) {
     console.log(title);
+    this.pageTitle = title;
   }
 
   onEventSelected(event) {
@@ -126,8 +112,6 @@ export class CalendarPage implements OnInit {
           this.lastTime = (this.selectedDate.getHours() + 1).toString() + ':' + this.selectedDate.getMinutes().toString();
         }
       }
-      console.log(this.firstTime);
-      console.log((this.selectedDate.getHours() + 1).toString());
       this.EventAddButtonPressed();
     }
   }

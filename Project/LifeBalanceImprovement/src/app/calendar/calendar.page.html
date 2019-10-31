@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>calendar</ion-title>
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,24 +12,22 @@
     </select>
     <ion-button (click)="EventAddButtonPressed()">Add event</ion-button>
 
-  <calendar [eventSource]="eventSource"
-    [calendarMode]="calendar.mode"
-    [currentDate]="calendar.currentDate"
+  <calendar [eventSource]="service.eventSource"
+    [calendarMode]="service.calendar.mode"
+    [currentDate]="service.calendar.currentDate"
     (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onRangeChanged)="reloadSource(firstTime, lastTime)"
     (onEventSelected)="onEventSelected($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
     step="30">
-  </calendar>
-
-
+  </calendar>  
 
 </ion-content>
 
-<div class="my-overlay" padding [hidden]="overlayHidden" (click)="cancelCreatingEvent()">
+<div class="my-overlay" padding [hidden]="overlayHidden">
   <div class="textBalloon" padding [hidden]="overlayHidden">
-      <form *ngIf="addEvent">
+      <form *ngIf="service.addEvent">
         <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
         <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
         <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
