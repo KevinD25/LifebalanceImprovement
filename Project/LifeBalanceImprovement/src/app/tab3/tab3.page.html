@@ -30,11 +30,12 @@
         
         <ion-card-subtitle>{{item.GoalDate}}  </ion-card-subtitle>
         
-        <ion-card *ngFor="let I of item.Notes; let j = index" > {{I}} <ion-button shape="round" color="danger" size="small" (click)="RemoveNote(i,j)">
+        <ion-card *ngFor="let I of item.Notes; let j = index " > {{I}} {{item.NoteDone[j]}}
+          <ion-button shape="round" color="danger" size="small" (click)="RemoveNote(i,j)">
             <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
-            
-   
-          </ion-button> </ion-card>
+           </ion-button>
+           <ion-checkbox [(ngModel)]="!item.NoteDone[j]" (click)="CheckBox(i,j)"></ion-checkbox>
+         </ion-card>
         
          
       </ion-card-header>

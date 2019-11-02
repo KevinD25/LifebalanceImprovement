@@ -15,10 +15,11 @@ export class Tab3Page implements OnInit{
   GoalNotes: string;
   TodayDay : number;
   TodayMonth : number;
-  TodayYear:number;
+  TodayYear: number;
   TodayDate : string;
   NoteHolder : string[] = [];
   NoteIDHolder : string[] = [];
+  NoteDone : boolean[] = [];
   NoteRecord : any = [];
 
  
@@ -50,6 +51,7 @@ export class Tab3Page implements OnInit{
           GoalDate: e.payload.doc.data()['GoalDate'],
           Notes : this.NoteHolder,
           NoteIDs : this.NoteIDHolder,
+          NoteDone : this.NoteDone
         };
       })
     });
@@ -60,7 +62,8 @@ export class Tab3Page implements OnInit{
           return{
             id: E.payload.doc.id,
             GoalID : E.payload.doc.data()['GoalID'],
-            Note : E.payload.doc.data()['Note']
+            Note : E.payload.doc.data()['Note'],
+            Done : E.payload.doc.data()["Done"]
   
           };
   
@@ -75,15 +78,20 @@ export class Tab3Page implements OnInit{
               
               this.NoteIDHolder.push(elemNote.id);
              this.NoteHolder.push(elemNote.Note);
+             this.NoteDone.push(elemNote.Done);
+             
             }
           });
           
           elemGoal.Notes = this.NoteHolder;
           elemGoal.NoteIDs = this.NoteIDHolder;
-          console.log(this.NoteIDHolder);
-          console.log(this.NoteHolder);
+          elemGoal.NoteDone = this.NoteDone;
+          console.log(elemGoal.NoteIDs);
+          console.log(elemGoal.Notes);
+          console.log(elemGoal.NoteDone);
           this.NoteIDHolder = [];
           this.NoteHolder = [];
+          this.NoteDone = [];
 
         });
         console.log(this.Goals);
@@ -97,7 +105,20 @@ export class Tab3Page implements OnInit{
   }
  
   
+  CheckBox(I,J)
+  {
  
+    this.Goals[I].NoteDone[J] = !this.Goals[I].NoteDone[J];
+   let record = {};
+   record["GoalID"] = this.Goals[I].id
+   record["Note"] = this.Goals[I].Notes[J];
+   record["Done"] = this.Goals[I].NoteDone[J];
+   record["id"] = this.Goals[I].NoteIDs[J];
+    
+    this.crudService.update_Entries(this.Goals[I].NoteIDs[J],record,"Notes");
+    
+    
+  }
 
   createRecord(Goal : string, Date : Date) {
     let record = {};
@@ -220,6 +241,7 @@ export class Tab3Page implements OnInit{
             if(data.Note != null)
             {
               this.NoteRecord["Note"] = data.Note;
+              this.NoteRecord["Done"] = false;
               this.crudService.create_Entries(this.NoteRecord,"Notes");
               this.NoteHolder = [];
               this.NoteIDHolder = [];
