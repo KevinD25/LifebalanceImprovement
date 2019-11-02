@@ -5,5 +5,17 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item  *ngFor="let item of Exercises">
+      {{item.ExerciseText}}
+    </ion-item>
+    
+  </ion-list>
+  <br>
+  <br>
+  <h1>{{TodaysExercise}}</h1>
+  <ion-item>
+      <ion-input placeholder="Enter Exercise" [(ngModel)]="Exercise" ></ion-input>
+    </ion-item>
+  <ion-button (click)="CreateRecord()" [disabled]="!Exercise">Submit</ion-button>
 </ion-content>
