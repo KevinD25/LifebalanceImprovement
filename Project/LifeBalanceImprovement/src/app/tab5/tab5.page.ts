@@ -13,7 +13,7 @@ export class Tab5Page {
 
     this.Profileitems = 
     {
-      ImgUrl : "URL",Name : "Kevin", Age : 420,Gender : 'Apache Helicopter'
+      ImgUrl : "URL",Name : "Kevin", Age : 420,Gender : 'Bum'
     }
   }
 
