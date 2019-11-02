@@ -5,10 +5,11 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
   { 
     path: 'auth', 
-    loadChildren: './auth/auth.module#AuthPageModule' },
+    loadChildren: './auth/auth.module#AuthPageModule' 
+  },
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    loadChildren: './tabs/tabs.module#TabsPageModule',
     canLoad: [AuthGuard] 
   },
   { 
@@ -26,6 +27,7 @@ const routes: Routes = [
     loadChildren: './tab4/psycho-edu/psycho-edu.module#PsychoEduPageModule', 
     canLoad: [AuthGuard] 
 },
+
   
 
 
