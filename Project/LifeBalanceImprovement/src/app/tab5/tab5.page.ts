@@ -16,7 +16,7 @@ export class Tab5Page {
     private router: Router) {
       this.Profileitems = 
       {
-        ImgUrl : "URL",Name : "Kevin", Age : 420,Gender : 'Bum'
+        ImgUrl : "URL",Name : "Test", Age : 420,Gender : 'Test'
       }
     }
 
