@@ -12,9 +12,9 @@
     </select>
     <ion-button (click)="EventAddButtonPressed()">Add event</ion-button>
 
-  <calendar [eventSource]="service.eventSource"
-    [calendarMode]="service.calendar.mode"
-    [currentDate]="service.calendar.currentDate"
+  <calendar [eventSource]="calendarService.eventSource"
+    [calendarMode]="calendarService.calendar.mode"
+    [currentDate]="calendarService.calendar.currentDate"
     (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onRangeChanged)="reloadSource(firstTime, lastTime)"
     (onEventSelected)="onEventSelected($event)"
@@ -27,11 +27,12 @@
 
 <div class="my-overlay" padding [hidden]="overlayHidden">
   <div class="textBalloon" padding [hidden]="overlayHidden">
-      <form *ngIf="service.addEvent">
+      <form *ngIf="calendarService.addEvent">
         <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
         <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
         <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
         <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="fullDay" name="fullDay">
+        <br>
         <ion-button (click)="addNewEvent()">Save event</ion-button>
         <ion-button (click)="cancelCreatingEvent()" color="danger">Cancel</ion-button>
       </form>

@@ -21,22 +21,26 @@ export class CalendarPage implements OnInit {
 
   overlayHidden: boolean = true;
 
-  constructor(private db: AngularFirestore, protected service: CalendarService) {
-    this.service.setAddEvent(false);
-    this.onViewTitleChanged(service.getTitle());
+  constructor(private db: AngularFirestore, protected calendarService: CalendarService) {
+    this.calendarService.setAddEvent(false);
+    this.onViewTitleChanged(calendarService.getTitle());
    }
 
   ngOnInit() {
   }
 
   ViewChanged() {
-    this.service.setView(this.view);
-    this.service.setAddEvent(false);
+    this.calendarService.setView(this.view);
+    setTimeout(() => this.calendarService.getAddEvent() == true);
+    asyncFunctionCall().then(res => {
+        this.loadingService.loading = false;
+    })
+    this.calendarService.setAddEvent(false);
   }
 
   cancelCreatingEvent(){
-    this.service.setAddEvent(false);
-    this.overlayHidden = true;
+    this.calendarService.setAddEvent(false);
+    this.hideOverlayTrue();
   }
 
   addNewEvent() {
@@ -63,12 +67,13 @@ export class CalendarPage implements OnInit {
     };
 
     this.db.collection(`Events`).add(event);
-    this.service.setAddEvent(false);
+    this.calendarService.setAddEvent(false);
+    this.hideOverlayTrue();
   }
 
   EventAddButtonPressed(){
-    this.service.setAddEvent(true);
-    this.hideOverlay();
+    this.calendarService.setAddEvent(true);
+    this.hideOverlayFalse();
   }
 
   onViewTitleChanged(title) {
@@ -124,7 +129,11 @@ export class CalendarPage implements OnInit {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
-  public hideOverlay() {
+  private hideOverlayFalse() {
     this.overlayHidden = false;
+  }
+
+  private hideOverlayTrue(){
+    this.overlayHidden = true;
   }
 }
