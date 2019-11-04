@@ -40,8 +40,25 @@ export class Tab3Page implements OnInit{
 
     this.TodayYear = new Date().getFullYear();
     
-
-    this.TodayDate =this.TodayYear + "-" + this.TodayMonth + "-" + this.TodayDay;
+    if(this.TodayDay < 10)
+    {
+      this.TodayDate =this.TodayYear + "-" + this.TodayMonth + "-0" + this.TodayDay;
+    }
+    else if(this.TodayMonth < 10)
+    {
+      this.TodayDate =this.TodayYear + "-0" + this.TodayMonth + "-" + this.TodayDay;
+    }
+    else if(this.TodayMonth < 10 && this.TodayDay < 10)
+    {
+      this.TodayDate =this.TodayYear + "-0" + this.TodayMonth + "-0" + this.TodayDay;
+    }
+    else
+    {
+      
+      this.TodayDate =this.TodayYear + "-" + this.TodayMonth + "-" + this.TodayDay;
+    
+    }
+    console.log(this.TodayDate);
     this.crudService.read_Entries("Goals").subscribe(data => {
       this.Goals = data.map(e => {
         return {
