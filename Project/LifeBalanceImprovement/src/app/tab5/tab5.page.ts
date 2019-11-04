@@ -25,4 +25,8 @@ this.authService.logout();
 this.router.navigateByUrl('/auth');
   }
 
+  goToExterneHulp(){
+    this.router.navigateByUrl('/externe-hulp');
+  }
+
 }

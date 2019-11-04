@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'mindfull-exer', loadChildren: './tab4/mindfull-exer/mindfull-exer.module#MindfullExerPageModule', canLoad: [AuthGuard]  },
   { path: 'psycho-edu', loadChildren: './tab4/psycho-edu/psycho-edu.module#PsychoEduPageModule', canLoad: [AuthGuard]  },
   { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule', canLoad: [AuthGuard]  },
+  { path: 'externe-hulp', loadChildren: './tab5/externe-hulp/externe-hulp.module#ExterneHulpPageModule' },
 
 ];
 @NgModule({
