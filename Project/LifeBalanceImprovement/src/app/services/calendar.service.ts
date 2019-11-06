@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { registerLocaleData } from '@angular/common';
+import localeNl from '@angular/common/locales/nl-BE';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,8 @@ export class CalendarService {
   // Calendar necessities
   private view = 'day';
   protected eventSource = [];
+  protected noEventsLabel = 'Niets gepland';
+  protected locale = registerLocaleData(localeNl);
 
   protected calendar = {
     mode: this.view,
@@ -22,6 +26,7 @@ export class CalendarService {
     // Constructor for variables
     this.setBooleans();
 
+    
     // Create and initiate calendar
     db.collection('Events').snapshotChanges().subscribe(colSnap => {
       this.eventSource = [];
@@ -30,7 +35,16 @@ export class CalendarService {
         event.id =  snap.payload.doc.id;
         event.startTime = event.startTime.toDate();
         event.endTime = event.endTime.toDate();
-        this.eventSource.push(event);
+        console.log(event.startTime);
+        event.label = '';
+        if (this.calendar.mode === 'day'){
+          if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
+            this.eventSource.push(event);
+            console.log('succes');
+          }
+        } else  {
+          this.eventSource.push(event);
+        }
       });
     });
   }

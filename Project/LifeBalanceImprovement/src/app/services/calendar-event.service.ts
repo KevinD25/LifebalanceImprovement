@@ -9,11 +9,12 @@ export class CalendarEventService {
 }
 
 
-interface IEvent {
+export interface IEvent {
   id: number;
   title: string;
   startTime: Date;
   endTime: Date;
   allDay: boolean;
+  label: string;
   // description etc
 }

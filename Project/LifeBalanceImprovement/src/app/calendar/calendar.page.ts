@@ -18,7 +18,6 @@ export class CalendarPage implements OnInit {
   fullDay: boolean =  false;
   addEvent: boolean;
   eventSelected: boolean = false;
-
   overlayHidden: boolean = true;
 
   constructor(private db: AngularFirestore, protected calendarService: CalendarService) {
@@ -31,11 +30,8 @@ export class CalendarPage implements OnInit {
 
   ViewChanged() {
     this.calendarService.setView(this.view);
-    setTimeout(() => this.calendarService.getAddEvent() == true);
-    asyncFunctionCall().then(res => {
-        this.loadingService.loading = false;
-    })
     this.calendarService.setAddEvent(false);
+    this.cancelCreatingEvent();
   }
 
   cancelCreatingEvent(){
@@ -78,7 +74,12 @@ export class CalendarPage implements OnInit {
 
   onViewTitleChanged(title) {
     console.log(title);
-    this.pageTitle = title;
+    let dateTitle = title.split(' ', 4);
+    let start = new Date();
+    let text = start.getDate();
+    console.log(text);
+    
+    this.pageTitle = text + ' ' + dateTitle[0] + ' ' + dateTitle[2];
   }
 
   onEventSelected(event) {

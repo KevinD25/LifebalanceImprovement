@@ -15,12 +15,14 @@
   <calendar [eventSource]="calendarService.eventSource"
     [calendarMode]="calendarService.calendar.mode"
     [currentDate]="calendarService.calendar.currentDate"
+    [noEventsLabel]="calendarService.noEventsLabel"
+    [locale]="'nl-BE'"
     (onCurrentDateChanged)="onCurrentDateChanged($event)"
     (onRangeChanged)="reloadSource(firstTime, lastTime)"
     (onEventSelected)="onEventSelected($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
-    step="30">
+    step="15">  
   </calendar>  
 
 </ion-content>
