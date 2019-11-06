@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CalendarService } from '../services/calendar.service';
+import { CalendarEventService } from '../services/calendar-event.service';
 
 @Component({
   selector: 'app-calendar',
@@ -20,8 +21,8 @@ export class CalendarPage implements OnInit {
   eventSelected: boolean = false;
   overlayHidden: boolean = true;
 
-  constructor(private db: AngularFirestore, protected calendarService: CalendarService) {
-    this.calendarService.setAddEvent(false);
+  constructor(private db: AngularFirestore, protected calendarService: CalendarService, protected calendarEventService: CalendarEventService) {
+    this.calendarEventService.setAddEvent(false);
     this.onViewTitleChanged(calendarService.getTitle());
    }
 
@@ -30,45 +31,22 @@ export class CalendarPage implements OnInit {
 
   ViewChanged() {
     this.calendarService.setView(this.view);
-    this.calendarService.setAddEvent(false);
+    this.calendarEventService.setAddEvent(false);
     this.cancelCreatingEvent();
   }
 
   cancelCreatingEvent(){
-    this.calendarService.setAddEvent(false);
+    this.calendarEventService.setAddEvent(false);
     this.hideOverlayTrue();
   }
 
   addNewEvent() {
-    let now = this.selectedDate;
-    let start = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), this.selectedDate.getDate());
-    let end = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), this.selectedDate.getDate());
-    if (this.fullDay){
-      start.setHours(0, 0, 0, 0);
-      end.setHours(23, 59, 59, 999);
-    } else {
-      let hours = this.firstTime.split(':', 2);
-      start.setHours(+hours[0]);
-      start.setMinutes(+hours[1]);
-      hours = this.lastTime.split(':', 2);
-      end.setHours(+hours[0]);
-      end.setMinutes(+hours[1]);
-    }
-
-    let event = {
-      title: this.titleEvent,
-      startTime: start,
-      endTime: end,
-      allDay: this.fullDay
-    };
-
-    this.db.collection(`Events`).add(event);
-    this.calendarService.setAddEvent(false);
+    this.calendarEventService.addNewEvent();
     this.hideOverlayTrue();
   }
 
   EventAddButtonPressed(){
-    this.calendarService.setAddEvent(true);
+    this.calendarEventService.setAddEvent(true);
     this.hideOverlayFalse();
   }
 
@@ -91,33 +69,8 @@ export class CalendarPage implements OnInit {
     console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
       (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
     this.selectedDate = ev.selectedTime;
-    if (!this.eventSelected){
-      if (this.selectedDate.getHours() < 10) {
-        if (this.selectedDate.getMinutes() < 10) {
-          this.firstTime = '0' + this.selectedDate.getHours().toString() + ':0' + this.selectedDate.getMinutes().toString();
-        } else {
-          this.firstTime = '0' + this.selectedDate.getHours().toString() + ':' + this.selectedDate.getMinutes().toString();
-        }
-      } else if (this.selectedDate.getHours() >= 10){
-        if (this.selectedDate.getMinutes() < 10) {
-          this.firstTime = this.selectedDate.getHours().toString() + ':0' + this.selectedDate.getMinutes().toString();
-        } else {
-          this.firstTime = this.selectedDate.getHours().toString() + ':' + this.selectedDate.getMinutes().toString();
-        }
-      }
-      if (this.selectedDate.getHours() + 1 < 10) {
-        if (this.selectedDate.getMinutes() < 10) {
-          this.lastTime = '0' + (this.selectedDate.getHours() + 1).toString() + ':0' + this.selectedDate.getMinutes().toString();
-        } else {
-          this.lastTime = '0' + (this.selectedDate.getHours() + 1).toString() + ':' + this.selectedDate.getMinutes().toString();
-        }
-      } else if (this.selectedDate.getHours() >= 10){
-        if (this.selectedDate.getMinutes() < 10) {
-          this.lastTime = (this.selectedDate.getHours() + 1).toString() + ':0' + this.selectedDate.getMinutes().toString();
-        } else {
-          this.lastTime = (this.selectedDate.getHours() + 1).toString() + ':' + this.selectedDate.getMinutes().toString();
-        }
-      }
+    const temp = this.calendarEventService.timeSelected(this.selectedDate);
+    if (temp){
       this.EventAddButtonPressed();
     }
   }

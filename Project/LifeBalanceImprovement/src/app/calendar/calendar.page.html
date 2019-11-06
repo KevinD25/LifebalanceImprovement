@@ -29,11 +29,11 @@
 
 <div class="my-overlay" padding [hidden]="overlayHidden">
   <div class="textBalloon" padding [hidden]="overlayHidden">
-      <form *ngIf="calendarService.addEvent">
-        <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
-        <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
-        <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
-        <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="fullDay" name="fullDay">
+      <form *ngIf="calendarEventService.addEvent">
+        <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
+        <p>Selecteer een starttijdstip</p><input [(ngModel)]="calendarEventService.firstTime" type="time" name="firstTime">
+        <p>Selecteer een eindtijdstip</p><input [(ngModel)]="calendarEventService.lastTime" type="time" name="lastTime">
+        <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
         <br>
         <ion-button (click)="addNewEvent()">Save event</ion-button>
         <ion-button (click)="cancelCreatingEvent()" color="danger">Cancel</ion-button>

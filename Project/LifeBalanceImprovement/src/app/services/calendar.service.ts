@@ -26,36 +26,37 @@ export class CalendarService {
     // Constructor for variables
     this.setBooleans();
 
-    
-    // Create and initiate calendar
-    db.collection('Events').snapshotChanges().subscribe(colSnap => {
+    // Initialize the events
+    this.getEventsFromDatabase();
+  }
+
+  getEventsFromDatabase() {
+    this.db.collection('Events').snapshotChanges().subscribe(colSnap => {
       this.eventSource = [];
-      colSnap.forEach(snap =>{
+      colSnap.forEach(snap => {
         let event: any = snap.payload.doc.data();
-        event.id =  snap.payload.doc.id;
+        event.id = snap.payload.doc.id;
         event.startTime = event.startTime.toDate();
         event.endTime = event.endTime.toDate();
-        console.log(event.startTime);
         event.label = '';
-        if (this.calendar.mode === 'day'){
+        if (this.calendar.mode === 'day') {
           if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
             this.eventSource.push(event);
-            console.log('succes');
           }
-        } else  {
+        } else {
           this.eventSource.push(event);
         }
       });
     });
   }
 
-  setAddEvent(value: boolean) {
-    this.addEvent = value;
-  }
+  // setAddEvent(value: boolean) {
+  //   this.addEvent = value;
+  // }
 
-  getAddEvent() {
-    return this.addEvent;
-  }
+  // getAddEvent() {
+  //   return this.addEvent;
+  // }
 
   setEvent(event: any){
     this.db.collection('Events').add(event);
