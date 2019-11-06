@@ -5,5 +5,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-card class="Doos" (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header>
+        <ion-icon name="logo-awel"></ion-icon>
+      <ion-card-title>{{item.Title}}</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content >
+      <app-expandable  expandHeight="800px" [expanded]="item.expanded">
+          {{item.Text}}
+          <br>
+        
+      </app-expandable>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
