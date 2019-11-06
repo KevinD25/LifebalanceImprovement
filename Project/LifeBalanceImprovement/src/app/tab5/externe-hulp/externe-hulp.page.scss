@@ -56,3 +56,16 @@ ion-icon {
      }
 
  }
+
+ .expand-wrapper {
+   transition: max-height 1.2s ease-in-out;
+   overflow: hidden;
+   height: auto;
+   color: black;
+   background-color: currentColor;
+ }
+ 
+ .collapsed {
+   max-height: 0 !important;
+   
+ }

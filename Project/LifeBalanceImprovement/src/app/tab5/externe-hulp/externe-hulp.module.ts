@@ -24,6 +24,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ExterneHulpPage]
+  declarations: [ExterneHulpPage, ExpandableComponent]
 })
 export class ExterneHulpPageModule {}

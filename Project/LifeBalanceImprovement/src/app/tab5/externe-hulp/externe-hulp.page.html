@@ -1,21 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>externe-hulp</ion-title>
+    <ion-title>Externe-hulp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="Doos" (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-icon name="logo-awel">testing</ion-icon>  
+  <ion-card (click)="expandItem(item)" *ngFor="let item of items">
     <ion-card-header>
-        <ion-icon name="logo-awel"></ion-icon>
+        <ion-icon name="item.Logo"></ion-icon> 
       <ion-card-title>{{item.Title}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content >
-      <app-expandable  expandHeight="800px" [expanded]="item.expanded">
+      <app-expandable  expandHeight="200px" [expanded]="item.expanded">
           {{item.Text}}
           <br>
-        
+          <ion-icon name="item.Logo"></ion-icon> 
+          <ion-icon name="logo-awel"></ion-icon> 
       </app-expandable>
     </ion-card-content>
   </ion-card>
