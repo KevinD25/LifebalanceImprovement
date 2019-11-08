@@ -16,7 +16,9 @@ export class CalendarService {
 
   protected calendar = {
     mode: this.view,
-    currentDate: new Date()
+    currentDate: new Date(),
+    startingDayWeek : 1,
+    startingDayMonth : 1
   };
 
   // boolean types

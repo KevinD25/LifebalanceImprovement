@@ -31,8 +31,6 @@ export class CalendarPage implements OnInit {
 
   ViewChanged() {
     this.calendarService.setView(this.view);
-    this.calendarEventService.setAddEvent(false);
-    this.cancelCreatingEvent();
   }
 
   cancelCreatingEvent(){
@@ -51,11 +49,9 @@ export class CalendarPage implements OnInit {
   }
 
   onViewTitleChanged(title) {
-    console.log(title);
     let dateTitle = title.split(' ', 4);
     let start = new Date();
     let text = start.getDate();
-    console.log(text);
     
     this.pageTitle = text + ' ' + dateTitle[0] + ' ' + dateTitle[2];
   }

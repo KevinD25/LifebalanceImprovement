@@ -5,25 +5,32 @@
 </ion-header>
 
 <ion-content>
+  <div class="main">
     <select name="view" [(ngModel)]="view" (change)="ViewChanged()">
-        <option value="month">Maand</option>
-        <option value="week">Week</option>
-        <option value="day">Dag</option>
+      <option value="month">Maand</option>
+      <option value="week">Week</option>
+      <option value="day">Dag</option>
     </select>
-    <ion-button (click)="EventAddButtonPressed()">Add event</ion-button>
-
-  <calendar [eventSource]="calendarService.eventSource"
-    [calendarMode]="calendarService.calendar.mode"
-    [currentDate]="calendarService.calendar.currentDate"
-    [noEventsLabel]="calendarService.noEventsLabel"
-    [locale]="'nl-BE'"
-    (onCurrentDateChanged)="onCurrentDateChanged($event)"
-    (onRangeChanged)="reloadSource(firstTime, lastTime)"
-    (onEventSelected)="onEventSelected($event)"
-    (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)"
-    step="15">  
-  </calendar>  
+    <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed()">+</button>
+    <div class="calendar">
+      <calendar [eventSource]="calendarService.eventSource"
+      [calendarMode]="calendarService.calendar.mode"
+      [currentDate]="calendarService.calendar.currentDate"
+      [noEventsLabel]="calendarService.noEventsLabel"
+      [locale]="'nl-BE'"
+      [startingDayWeek]="calendarService.calendar.startingDayWeek"
+      [startingDayMonth]="calendarService.calendar.startingDayMonth"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onRangeChanged)="reloadSource(firstTime, lastTime)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)"
+      step="15">  
+      </calendar> 
+    </div>
+     
+  </div>
+  
 
 </ion-content>
 

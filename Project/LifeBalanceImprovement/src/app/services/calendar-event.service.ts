@@ -19,7 +19,7 @@ export class CalendarEventService {
   addNewEvent() {
     let start = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), this.selectedDate.getDate());
     let end = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), this.selectedDate.getDate());
-
+      
     if (this.fullDay){
       start.setHours(0, 0, 0, 0);
       end.setHours(23, 59, 59, 999);
