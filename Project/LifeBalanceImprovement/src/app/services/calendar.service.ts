@@ -14,7 +14,7 @@ export class CalendarService {
   protected noEventsLabel = 'Niets gepland';
   protected locale = registerLocaleData(localeNl);
 
-  protected calendar = {
+  public calendar = {
     mode: this.view,
     currentDate: new Date(),
     startingDayWeek : 1,
@@ -41,12 +41,14 @@ export class CalendarService {
         event.startTime = event.startTime.toDate();
         event.endTime = event.endTime.toDate();
         event.label = '';
-        if (this.calendar.mode === 'day') {
-          if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
+        if (event.userId === 'uP2Bn2DDvYkodebwwej8') {
+          if (this.calendar.mode === 'day') {
+            if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
+              this.eventSource.push(event);
+            }
+          } else {
             this.eventSource.push(event);
           }
-        } else {
-          this.eventSource.push(event);
         }
       });
     });

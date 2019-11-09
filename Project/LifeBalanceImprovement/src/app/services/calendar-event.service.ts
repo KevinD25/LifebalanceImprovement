@@ -36,9 +36,12 @@ export class CalendarEventService {
       title: this.titleEvent,
       startTime: start,
       endTime: end,
-      allDay: this.fullDay
+      allDay: this.fullDay,
+      userId: 'uP2Bn2DDvYkodebwwej8'
     };
     this.db.collection(`Events`).add(event);
+    this.titleEvent = '';
+    this.fullDay = false;
     this.addEvent = false;
   }
 
@@ -94,5 +97,6 @@ export interface IEvent {
   endTime: Date;
   allDay: boolean;
   label: string;
+  userId: string;
   // description etc
 }
