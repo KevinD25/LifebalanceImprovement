@@ -16,25 +16,25 @@ ion-icon {
         height: 1em;
      }
     &[class*="logo-awel"] {
-       mask-image: url(/assets/img/icons/awel.png);
+       mask-image: url(src\assets\img\awel.png);
     }
     &[class*="logo-jac"] {
-       mask-image: url(/assets/img/icons/jac.png);
+       mask-image: url(/src/assets/img/jac.png);
     }
     &[class*="logo-clb"] {
-        mask-image: url(/assets/img/icons/clb.png);
+        mask-image: url(/assets/img/clb.png);
      }
      &[class*="logo-overkop"] {
-        mask-image: url(/assets/img/icons/overkop.png);
+        mask-image: url(/assets/img/overkop.png);
      }
      &[class*="logo-tejo"] {
-        mask-image: url(/assets/img/icons/tejo.jpg);
+        mask-image: url(/assets/img/tejo.jpg);
      }
      &[class*="logo-teleonthaal"] {
-        mask-image: url(/assets/img/icons/teleonthaal.png);
+        mask-image: url(/assets/img/teleonthaal.png);
      }
      &[class*="logo-zelfmoordlijn"] {
-        mask-image: url(/assets/img/icons/zelfmoordlijn.jpg);
+        mask-image: url(/assets/img/zelfmoordlijn.jpg);
      }
 
 
