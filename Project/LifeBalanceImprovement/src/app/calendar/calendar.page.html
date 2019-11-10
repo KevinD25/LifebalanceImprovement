@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{pageTitle}}</ion-title>{{pageTitle}}
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -34,8 +34,8 @@
 
 </ion-content>
 
-<div class="my-overlay" padding [hidden]="overlayHidden">
-  <div class="textBalloon" padding [hidden]="overlayHidden">
+<div class="my-overlay" padding [hidden]="addEventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="addEventOverlayHidden">
       <form *ngIf="calendarEventService.addEvent">
         <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
         <p>Selecteer een starttijdstip</p><input [(ngModel)]="calendarEventService.firstTime" type="time" name="firstTime">
@@ -45,5 +45,17 @@
         <ion-button (click)="addNewEvent()">Save event</ion-button>
         <ion-button (click)="cancelCreatingEvent()" color="danger">Cancel</ion-button>
       </form>
+  </div>
+</div>
+
+<div class="my-overlay" padding [hidden]="eventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="eventOverlayHidden">
+      <div *ngIf="calendarService.seeEvent">
+        <h3>{{calendarService.seeEventData.title}}</h3>
+        <p>{{calendarService.startTime}}</p>
+        <p>{{calendarService.endTime}}</p>
+        <p>{{calendarService.seeEventData.label}}</p>
+        <ion-button (click)="cancelViewingEvent()" class="cancelButton" color="danger">Cancel</ion-button>
+      </div>
   </div>
 </div>

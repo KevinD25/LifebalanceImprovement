@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl-BE';
+import { IEvent } from './calendar-event.service';
+import { TimeService } from './time.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,10 @@ export class CalendarService {
   protected eventSource = [];
   protected noEventsLabel = 'Niets gepland';
   protected locale = registerLocaleData(localeNl);
+  protected startTime: string;
+  protected endTime: string;
+  public disabled = [];
+  public seeEventData: IEvent;
 
   public calendar = {
     mode: this.view,
@@ -23,8 +29,9 @@ export class CalendarService {
 
   // boolean types
   protected addEvent: boolean;
+  protected seeEvent: boolean;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private timeSvc: TimeService) {
     // Constructor for variables
     this.setBooleans();
 
@@ -54,13 +61,36 @@ export class CalendarService {
     });
   }
 
-  // setAddEvent(value: boolean) {
-  //   this.addEvent = value;
-  // }
+  setSeeEventTrue() {
+    this.seeEvent = true;
+  }
 
-  // getAddEvent() {
-  //   return this.addEvent;
-  // }
+  setSeeEventFalse() {
+    this.seeEvent = false;
+  }
+
+  getEventData(event) {
+    this.startTime = '';
+    this.endTime = '';
+    this.eventSource.forEach(ev => {
+      if (ev.startTime <= event.startTime && ev.endTime >= event.endTime) {
+        this.seeEventData = ev;
+        this.startTime = ev.startTime.toString();
+        this.endTime = ev.endTime.toString();
+        this.seeEvent = true;
+      }
+    });
+  }
+
+  setDateRight(firstDate: Date, lastDate: Date, title: string) {
+    this.timeSvc.timeSelected(firstDate);
+    const first = this.timeSvc.getSelectedDate();
+    this.timeSvc.timeSelected(lastDate);
+    const last = this.timeSvc.getSelectedDate();
+    const titleArray = title.split(' ');
+    this.startTime = firstDate.getDate() + ' ' + titleArray[1] + ' ' + titleArray[2] + ' om ' + first;
+    this.endTime = lastDate.getDate() + ' ' + titleArray[1] + ' ' + titleArray[2] + ' om ' + last;
+  }
 
   setEvent(event: any){
     this.db.collection('Events').add(event);
@@ -73,6 +103,7 @@ export class CalendarService {
 
   private setBooleans() {
     this.addEvent = false;
+    this.seeEvent = false;
   }
 
   setView(input: string){
