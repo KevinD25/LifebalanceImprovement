@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CalendarService } from '../services/calendar.service';
+import { CRUDServiceService } from '../services/crudservice.service';
 
 @Component({
   selector: 'app-calendar',
@@ -16,14 +17,28 @@ export class CalendarPage implements OnInit {
   firstTime: string = '';
   lastTime: string = '';
   fullDay: boolean =  false;
+  label : string = '';
   addEvent: boolean;
   eventSelected: boolean = false;
+  items : string[] =[];
 
   overlayHidden: boolean = true;
+  
 
-  constructor(private db: AngularFirestore, protected service: CalendarService) {
+  constructor(private db: AngularFirestore, protected service: CalendarService, protected SVC : CRUDServiceService) {
     this.service.setAddEvent(false);
     this.onViewTitleChanged(service.getTitle());
+    
+      this.SVC.read_Entries("Labels").subscribe(data => {
+ 
+        data.map(e => {
+          this.items.push(e.payload.doc.data()['Label']);
+         
+        })
+      })
+      console.log(this.items);
+
+    
    }
 
   ngOnInit() {

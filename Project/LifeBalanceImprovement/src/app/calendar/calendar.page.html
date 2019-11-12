@@ -29,6 +29,12 @@
   <div class="textBalloon" padding [hidden]="overlayHidden">
       <form *ngIf="service.addEvent">
         <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
+        <br>
+        <br>
+        Label : 
+        <select name="Labels" id="" [(ngModel)]="label">
+          <option *ngFor="let item of items" value="{{item}}">{{item}}</option>
+      </select>
         <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
         <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
         <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="fullDay" name="fullDay">
