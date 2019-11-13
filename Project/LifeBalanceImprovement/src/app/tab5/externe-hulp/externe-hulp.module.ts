@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExterneHulpPage } from './externe-hulp.page';
 
-import { ExpandableComponent } from '../../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../../expandable/expandable.component';
 
 
 const routes: Routes = [

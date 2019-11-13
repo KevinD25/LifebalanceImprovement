@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ExpandableComponent } from '../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../expandable/expandable.component';
 
 @Component({
   selector: 'app-tab4',

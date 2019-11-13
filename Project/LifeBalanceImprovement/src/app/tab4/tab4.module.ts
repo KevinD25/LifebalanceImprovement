@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab4Page } from './tab4.page';
-import { ExpandableComponent } from '../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../expandable/expandable.component';
 
 @NgModule({
   imports: [
