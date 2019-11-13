@@ -9,4 +9,10 @@ export class Tab1Page {
 
   constructor() {}
 
+  
+  //Random tip of the day based on day. Use day to generate N number to show specific qotd that changes every day.
+  generateQotd(){
+
+  }
+
 }
