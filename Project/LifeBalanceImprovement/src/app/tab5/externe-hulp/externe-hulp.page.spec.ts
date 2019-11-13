@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ExpandableComponent } from '../../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../../expandable/expandable.component';
 
 
 import { ExterneHulpPage } from './externe-hulp.page';
