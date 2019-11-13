@@ -18,7 +18,26 @@
   z-index: 21;
   margin: auto;
   align-content: center;
-  width: 90%;
+  width: 90%; 
+  align-content: center;
+}
+
+.buttons{
+  margin-bottom: 10%;
+}
+
+.saveEventButton{
+  float: right;
+}
+
+.cancelEventbutton{
+  float: left;
+}
+
+.eventInfo{
+  padding-top: 5px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .calendar{
@@ -26,14 +45,16 @@
 }
 
 .addEvent{
-  background-color: #AF5FFF;
+  background-color: white;
   z-index: 10;
   position: absolute;
   bottom: 5%;
   right: 10%;
   height: 50px;
+  text-align: center;
+  line-height: 35px;
   width: 50px;
   border-radius: 50%;
-  border: 1px solid #AF5FFF;
+  border: 1px solid gray;
   font-size: xx-large;
 }

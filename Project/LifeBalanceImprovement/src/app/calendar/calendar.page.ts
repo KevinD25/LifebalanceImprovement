@@ -21,20 +21,24 @@ export class CalendarPage implements OnInit {
   eventSelected: boolean = false;
   addEventOverlayHidden: boolean = true;
   eventOverlayHidden: boolean = true;
+  hasDateBeenPicked: boolean = false;
+  testDate: string;
 
   constructor(private db: AngularFirestore, protected calendarService: CalendarService, protected calendarEventService: CalendarEventService) {
     this.calendarEventService.setAddEvent(false);
+    this.hideAddEventOverlayTrue();
     this.onTitleChanged(calendarService.getTitle(), this.selectedDate);
     console.log("oi oi:" + this.pageTitle);
+    this.testDate = new Date().toISOString().split('T')[0];
    }
 
   ngOnInit() {
   }
 
   ViewChanged() {
-    this.calendarService.setView(this.view);
+    // this.calendarService.setView(this.view);
+    // this.calendarService.getEventsFromDatabase();
     console.log('1');
-    
   }
 
   cancelCreatingEvent(){
@@ -47,15 +51,22 @@ export class CalendarPage implements OnInit {
     this.hideEventOverlay();
     this.calendarService.setSeeEventFalse();
     this.eventSelected = false;
+    console.log('2,5');
   }
 
   addNewEvent() {
-    this.calendarEventService.addNewEvent();
+    console.log(this.calendarEventService.firstTime);
+    console.log(this.calendarEventService.lastTime);
+    this.calendarEventService.addNewEvent(this.hasDateBeenPicked);
     this.hideAddEventOverlayTrue();
     console.log('3');
   }
 
-  EventAddButtonPressed(){
+  EventAddButtonPressed(type: boolean) {
+    this.hasDateBeenPicked = type;
+    if (!this.hasDateBeenPicked) {
+      this.calendarEventService.setDates(this.selectedDate);
+    }
     this.calendarEventService.setAddEvent(true);
     this.hideAddEventOverlayFalse();
     console.log('4');
@@ -63,14 +74,19 @@ export class CalendarPage implements OnInit {
 
   onViewTitleChanged(title) {
     this.onTitleChanged(title, this.calendarService.calendar.currentDate);
+    console.log('5');
   }
 
-  onTitleChanged(title, date: Date) {
+  onTitleChanged(title: string, date: Date) {
     let text = date.getDate();
     let dateTitle = title.split(' ');
-    
-    this.pageTitle = text + ' ' + dateTitle[0] + ' ' + dateTitle[2];
-    console.log('6');
+    if (this.calendarService.getView() === 'day'){
+      this.pageTitle = text + ' ' + dateTitle[0] + ' ' + dateTitle[2];
+    } else if (this.calendarService.getView() === 'week') {
+      this.pageTitle = title.toLocaleLowerCase();
+    } else if (this.calendarService.getView() === 'month') {
+      this.pageTitle = title;
+    }
   }
 
   onEventSelected(event) {
@@ -82,6 +98,7 @@ export class CalendarPage implements OnInit {
       this.calendarService.setDateRight(this.calendarService.seeEventData.startTime, this.calendarService.seeEventData.endTime, this.pageTitle);
       this.showEventOverlay();
     }
+    console.log('6');
   }
 
   onTimeSelected(ev) {
@@ -91,9 +108,9 @@ export class CalendarPage implements OnInit {
       this.selectedDate = ev.selectedTime;
       const temp = this.calendarEventService.timeSelected(this.selectedDate);
       if (temp){
-        this.EventAddButtonPressed();
+        this.EventAddButtonPressed(true);
       }
-      console.log('8');
+      console.log('7');
     }
   }
 
@@ -101,13 +118,13 @@ export class CalendarPage implements OnInit {
     console.log('current date change: ' + event);
     this.calendarService.calendar.currentDate = event;
     this.calendarService.getEventsFromDatabase();
-    console.log('9');
+    console.log('8');
     
   }
 
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
-    console.log('10');
+    console.log('9');
   }
 
   reloadSource(firstTime: Date, lastTime: Date){
@@ -131,4 +148,5 @@ export class CalendarPage implements OnInit {
   private showEventOverlay() {
     this.eventOverlayHidden = false;
   }
+  
 }

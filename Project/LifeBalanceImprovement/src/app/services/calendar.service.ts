@@ -11,7 +11,6 @@ import { TimeService } from './time.service';
 export class CalendarService {
 
   // Calendar necessities
-  private view = 'day';
   protected eventSource = [];
   protected noEventsLabel = 'Niets gepland';
   protected locale = registerLocaleData(localeNl);
@@ -21,7 +20,7 @@ export class CalendarService {
   public seeEventData: IEvent;
 
   public calendar = {
-    mode: this.view,
+    mode: 'day',
     currentDate: new Date(),
     startingDayWeek : 1,
     startingDayMonth : 1
@@ -111,6 +110,6 @@ export class CalendarService {
   }
 
   getView(){
-    return this.view;
+    return this.calendar.mode;
   }
 }

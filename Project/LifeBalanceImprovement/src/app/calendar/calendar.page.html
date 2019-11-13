@@ -11,7 +11,7 @@
       <option value="week">Week</option>
       <option value="day">Dag</option>
     </select>
-    <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed()">+</button>
+    <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed(false)">+</button>
     <div class="calendar">
       <calendar [eventSource]="calendarService.eventSource"
       [calendarMode]="calendarService.calendar.mode"
@@ -37,13 +37,23 @@
 <div class="my-overlay" padding [hidden]="addEventOverlayHidden">
   <div class="textBalloon" padding [hidden]="addEventOverlayHidden">
       <form *ngIf="calendarEventService.addEvent">
-        <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
-        <p>Selecteer een starttijdstip</p><input [(ngModel)]="calendarEventService.firstTime" type="time" name="firstTime">
-        <p>Selecteer een eindtijdstip</p><input [(ngModel)]="calendarEventService.lastTime" type="time" name="lastTime">
-        <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
-        <br>
-        <ion-button (click)="addNewEvent()">Save event</ion-button>
-        <ion-button (click)="cancelCreatingEvent()" color="danger">Cancel</ion-button>
+        <div class="buttons">
+          <ion-button (click)="addNewEvent()" class="saveEventButton">Save event</ion-button>
+          <ion-button (click)="cancelCreatingEvent()" class="cancelEventButton" color="danger">Cancel</ion-button>
+        </div>
+        <div class="eventInfo">
+          <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
+          <p>Selecteer een starttijdstip</p>
+          <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="datetime-local" required name="firstTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="date" required name="firstTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="time" required name="firstTime">
+          <p>Selecteer een eindtijdstip</p>
+          <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="datetime-local" required name="lastTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="testDate" type="date" required name="lastTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="time" required name="lastTime">
+          <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
+          <br>
+        </div>
       </form>
   </div>
 </div>
@@ -52,9 +62,9 @@
   <div class="textBalloon" padding [hidden]="eventOverlayHidden">
       <div *ngIf="calendarService.seeEvent">
         <h3>{{calendarService.seeEventData.title}}</h3>
-        <p>{{calendarService.startTime}}</p>
-        <p>{{calendarService.endTime}}</p>
-        <p>{{calendarService.seeEventData.label}}</p>
+        <p>Start: {{calendarService.startTime}}</p>
+        <p>Einde: {{calendarService.endTime}}</p>
+        <p>Label: {{calendarService.seeEventData.label}}</p>
         <ion-button (click)="cancelViewingEvent()" class="cancelButton" color="danger">Cancel</ion-button>
       </div>
   </div>
