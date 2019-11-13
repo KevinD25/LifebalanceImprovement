@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExterneHulpPage } from './externe-hulp.page';
 
-import { ExpandableComponent } from '../../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../../expandable/expandable.component';
+import { ExpandableModule } from 'src/app/expandable/expandable.module';
 
 
 const routes: Routes = [
@@ -22,8 +23,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ExpandableModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ExterneHulpPage, ExpandableComponent]
+  declarations: [ExterneHulpPage]
 })
 export class ExterneHulpPageModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpandableComponent } from '../../Items/expandable/expandable.component';
+import { ExpandableComponent} from '../../expandable/expandable.component';
 import { strictEqual } from 'assert';
 
 
@@ -12,13 +12,24 @@ import { strictEqual } from 'assert';
 export class ExterneHulpPage implements OnInit {
 
   public items: any = [];
-  public logos: any = [];
+  //public logos: any = [];
+  public sitePath : string;
+  public chatPath : string;
+  public mailPath : string;
+  public phonePath : string;
+  public forumPath : string;
 
   constructor() { 
 
-    this.logos = [
+   this.sitePath = "/assets/img/site.png";
+   this.chatPath = "/assets/img/chat.png";
+   this.mailPath = "/assets/img/mail.png";
+   this.phonePath = "/assets/img/phone.png";
+   this.forumPath = "/assets/img/forum.png";
+
+   /* this.logos = [
       { sitePath : "/assets/img/site.png", chatPath : "/assets/img/chat.png", mailPath : "/assets/img/mail.png", phonePath : "/assets/img/phone.png", forumPath : "/assets/img/forum.png"},
-    ]
+    ]*/
 
     this.items = [
       { expanded: false, Text : "Awel luistert naar kinderen en jongeren.",Title : "Awel", index : 0, Logo : "/assets/img/awel.png", site : "https://awel.be/", chat : "Chat met AWEL : Ma-za 18-22u (https://awel.be/babbel#chat)", mail: "Mail (brievenbus@awel.be)", phone: "Gratis en anoniem op 102. Ma-za: 16-22u", forum : "Bezoek het forum van AWEL (https://awel.be/forum)"},

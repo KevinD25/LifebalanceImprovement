@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { ExpandableComponent } from '../Items/expandable/expandable.component';
+import { ExpandableComponent } from '../expandable/expandable.component';
 
 import { Tab4Page } from './tab4.page';
 
