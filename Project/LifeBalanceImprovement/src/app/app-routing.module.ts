@@ -5,10 +5,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  { path: 'happy-exer', loadChildren: './tab4/happy-exer/happy-exer.module#HappyExerPageModule' },
-  { path: 'mindfull-exer', loadChildren: './tab4/mindfull-exer/mindfull-exer.module#MindfullExerPageModule' },
-  { path: 'psycho-edu', loadChildren: './tab4/psycho-edu/psycho-edu.module#PsychoEduPageModule' },
-  { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' },
+  },
+  { path: '**', redirectTo: 'tabs/tab1', pathMatch: 'full' }
+  
 
 
 

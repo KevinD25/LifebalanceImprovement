@@ -1,3 +1,8 @@
+.main{
+  bottom: 10%;
+  height: 100%;
+}
+
 .my-overlay {
     position: fixed;
     width: 100%;
@@ -14,4 +19,21 @@
   margin: auto;
   align-content: center;
   width: 90%;
+}
+
+.calendar{
+  height: 96%;
+}
+
+.addEvent{
+  background-color: #AF5FFF;
+  z-index: 10;
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid #AF5FFF;
+  font-size: xx-large;
 }

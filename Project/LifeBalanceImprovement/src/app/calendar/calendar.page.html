@@ -5,41 +5,57 @@
 </ion-header>
 
 <ion-content>
+  <div class="main">
     <select name="view" [(ngModel)]="view" (change)="ViewChanged()">
-        <option value="month">Maand</option>
-        <option value="week">Week</option>
-        <option value="day">Dag</option>
+      <option value="month">Maand</option>
+      <option value="week">Week</option>
+      <option value="day">Dag</option>
     </select>
-    <ion-button (click)="EventAddButtonPressed()">Add event</ion-button>
-
-  <calendar [eventSource]="service.eventSource"
-    [calendarMode]="service.calendar.mode"
-    [currentDate]="service.calendar.currentDate"
-    (onCurrentDateChanged)="onCurrentDateChanged($event)"
-    (onRangeChanged)="reloadSource(firstTime, lastTime)"
-    (onEventSelected)="onEventSelected($event)"
-    (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)"
-    step="30">
-  </calendar>  
+    <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed()">+</button>
+    <div class="calendar">
+      <calendar [eventSource]="calendarService.eventSource"
+      [calendarMode]="calendarService.calendar.mode"
+      [currentDate]="calendarService.calendar.currentDate"
+      [noEventsLabel]="calendarService.noEventsLabel"
+      [locale]="'nl-BE'"
+      [startingDayWeek]="calendarService.calendar.startingDayWeek"
+      [startingDayMonth]="calendarService.calendar.startingDayMonth"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onRangeChanged)="reloadSource(firstTime, lastTime)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)"
+      step="15">  
+      </calendar> 
+    </div>
+     
+  </div>
+  
 
 </ion-content>
 
-<div class="my-overlay" padding [hidden]="overlayHidden">
-  <div class="textBalloon" padding [hidden]="overlayHidden">
-      <form *ngIf="service.addEvent">
-        <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
+<div class="my-overlay" padding [hidden]="addEventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="addEventOverlayHidden">
+      <form *ngIf="calendarEventService.addEvent">
+        <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
+        <p>Selecteer een starttijdstip</p><input [(ngModel)]="calendarEventService.firstTime" type="time" name="firstTime">
+        <p>Selecteer een eindtijdstip</p><input [(ngModel)]="calendarEventService.lastTime" type="time" name="lastTime">
+        <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
         <br>
-        <br>
-        Label : 
-        <select name="Labels" id="" [(ngModel)]="label">
-          <option *ngFor="let item of items" value="{{item}}">{{item}}</option>
-      </select>
-        <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
-        <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
-        <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="fullDay" name="fullDay">
         <ion-button (click)="addNewEvent()">Save event</ion-button>
         <ion-button (click)="cancelCreatingEvent()" color="danger">Cancel</ion-button>
       </form>
+  </div>
+</div>
+
+<div class="my-overlay" padding [hidden]="eventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="eventOverlayHidden">
+      <div *ngIf="calendarService.seeEvent">
+        <h3>{{calendarService.seeEventData.title}}</h3>
+        <p>{{calendarService.startTime}}</p>
+        <p>{{calendarService.endTime}}</p>
+        <p>{{calendarService.seeEventData.label}}</p>
+        <ion-button (click)="cancelViewingEvent()" class="cancelButton" color="danger">Cancel</ion-button>
+      </div>
   </div>
 </div>
