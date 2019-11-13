@@ -13,6 +13,7 @@ export class CalendarEventService {
   protected fullDay: boolean = false;
   protected eventSelected: boolean = false;
   protected addEvent: boolean;
+  protected label : string = '';
 
   constructor(private db: AngularFirestore) { }
 
@@ -37,6 +38,7 @@ export class CalendarEventService {
       startTime: start,
       endTime: end,
       allDay: this.fullDay,
+      label: this.label,
       userId: 'uP2Bn2DDvYkodebwwej8'
     };
     this.db.collection(`Events`).add(event);

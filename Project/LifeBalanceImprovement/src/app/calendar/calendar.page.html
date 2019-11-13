@@ -42,7 +42,7 @@
         <br>
         <br>
         Label : 
-        <select name="Labels" id="" [(ngModel)]="label">
+        <select name="Labels" id="" [(ngModel)]="calendarEventService.label">
           <option *ngFor="let item of items" value="{{item}}">{{item}}</option>
       </select>
         <p>Selecteer een starttijdstip</p><input [(ngModel)]="calendarEventService.firstTime" type="time" name="firstTime">

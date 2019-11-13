@@ -47,7 +47,6 @@ export class CalendarService {
         event.id = snap.payload.doc.id;
         event.startTime = event.startTime.toDate();
         event.endTime = event.endTime.toDate();
-        event.label = '';
         if (event.userId === 'uP2Bn2DDvYkodebwwej8') {
           if (this.calendar.mode === 'day') {
             if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
