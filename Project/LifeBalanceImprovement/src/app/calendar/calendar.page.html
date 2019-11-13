@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content>
+  <select name="view" [(ngModel)]="view" (change)="ViewChanged()">
+    <option value="month">Maand</option>
+    <option value="week">Week</option>
+    <option value="day">Dag</option>
+  </select>
   <div class="main">
     
     <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed(false)">+</button>
