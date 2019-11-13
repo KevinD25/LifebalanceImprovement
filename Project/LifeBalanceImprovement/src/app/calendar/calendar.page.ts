@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CalendarService } from '../services/calendar.service';
 import { CalendarEventService } from '../services/calendar-event.service';
+import { CRUDServiceService } from '../services/crudservice.service';
 
 @Component({
   selector: 'app-calendar',
@@ -23,10 +24,19 @@ export class CalendarPage implements OnInit {
   addEventOverlayHidden: boolean = true;
   eventOverlayHidden: boolean = true;
 
-  constructor(private db: AngularFirestore, protected calendarService: CalendarService, protected calendarEventService: CalendarEventService) {
+  items : string[] = [];
+
+  constructor(private db: AngularFirestore, protected calendarService: CalendarService, protected calendarEventService: CalendarEventService, protected SVC : CRUDServiceService) {
     this.calendarEventService.setAddEvent(false);
     this.onTitleChanged(calendarService.getTitle(), this.selectedDate);
     console.log("oi oi:" + this.pageTitle);
+
+    this.SVC.read_Entries("Labels").subscribe(data => {
+      data.map(e=>{
+        this.items.push(e.payload.doc.data()['Label']);
+      })
+    })
+    console.log(this.items);
    }
 
   ngOnInit() {
