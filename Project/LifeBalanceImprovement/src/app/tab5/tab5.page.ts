@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tab5',
   templateUrl: 'tab5.page.html',
@@ -8,13 +11,22 @@ import { Component } from '@angular/core';
 export class Tab5Page {
 
   public Profileitems: any;
-
-  constructor() {
-
-    this.Profileitems = 
-    {
-      ImgUrl : "URL",Name : "Kevin", Age : 420,Gender : 'Bum'
+    
+  constructor(private authService: AuthService,
+    private router: Router) {
+      this.Profileitems = 
+      {
+        ImgUrl : "URL",Name : "Test", Age : 420,Gender : 'Test'
+      }
     }
+
+  onLogout() {
+this.authService.logout();
+this.router.navigateByUrl('/auth');
+  }
+
+  goToExterneHulp(){
+    this.router.navigateByUrl('/externe-hulp');
   }
 
 }

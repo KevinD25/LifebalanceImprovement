@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Externe-hulp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header>
+      <ion-item>
+        
+        <ion-img [src]="item.Logo"></ion-img>
+      
+      <ion-card-title>{{item.Title}}</ion-card-title>
+      <ion-label>
+          
+      </ion-label>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content >
+      <app-expandable  expandHeight="300px" [expanded]="item.expanded">
+          {{item.Text}}
+
+          <ion-item name ="site" *ngIf="item.site">
+            <ion-thumbnail>
+                <ion-img [src]="logos.sitePath"></ion-img>
+            </ion-thumbnail>
+              
+              <ion-label>{{item.site}}</ion-label>
+          </ion-item>
+
+          <ion-item name="chat" *ngIf="item.chat">
+              <ion-thumbnail>
+                  <ion-img [src]=logos.sitePath></ion-img>
+              </ion-thumbnail>
+                
+                <ion-label>{{item.chat}}</ion-label>
+            </ion-item>
+
+            <ion-item name = "mail" *ngIf="item.mail">
+                <ion-thumbnail>
+                    <ion-img [src]=logos.sitePath></ion-img>
+                </ion-thumbnail>
+                  
+                  <ion-label>{{item.mail}}</ion-label>
+              </ion-item>
+
+              <ion-item name = "phone" *ngIf="item.phone">
+                  <ion-thumbnail>
+                      <ion-img [src]=logos.sitePath></ion-img>
+                  </ion-thumbnail>
+                    
+                    <ion-label>{{item.phone}}</ion-label>
+                </ion-item>
+
+                <ion-item name = "forum" *ngIf="item.forum">
+                    <ion-thumbnail>
+                        <ion-img [src]=logos.sitePath></ion-img>
+                    </ion-thumbnail>
+                      
+                      <ion-label>{{item.forum}}</ion-label>
+                  </ion-item>
+
+      
+      </app-expandable>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

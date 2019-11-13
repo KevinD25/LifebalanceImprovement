@@ -1,0 +1,71 @@
+ion-icon {
+    &[class*="logo-"] {
+       mask-size: contain;
+       mask-position: 50% 50%;
+       mask-repeat: no-repeat;
+       background: currentColor;
+       width: 2em;
+       height: 2em;
+    }
+    &[class*="icon-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+     }
+    &[class*="logo-awel"] {
+       mask-image: url(src\assets\img\awel.png);
+    }
+    &[class*="logo-jac"] {
+       mask-image: url(/src/assets/img/jac.png);
+    }
+    &[class*="logo-clb"] {
+        mask-image: url(/assets/img/clb.png);
+     }
+     &[class*="logo-overkop"] {
+        mask-image: url(/assets/img/overkop.png);
+     }
+     &[class*="logo-tejo"] {
+        mask-image: url(/assets/img/tejo.jpg);
+     }
+     &[class*="logo-teleonthaal"] {
+        mask-image: url(/assets/img/teleonthaal.png);
+     }
+     &[class*="logo-zelfmoordlijn"] {
+        mask-image: url(/assets/img/zelfmoordlijn.jpg);
+     }
+
+
+
+     &[class*="icon-website"] {
+        mask-image: url(/assets/img/icons/site.png);
+     }
+     &[class*="icon-chat"] {
+        mask-image: url(/assets/img/icons/chat.png);
+     }
+     &[class*="icon-mail"] {
+        mask-image: url(/assets/img/icons/mail.png);
+     }
+     &[class*="icon-phone"] {
+        mask-image: url(/assets/img/icons/phone.png);
+     }
+     &[class*="icon-forum"] {
+        mask-image: url(/assets/img/icons/forum.png);
+     }
+
+ }
+
+ .expand-wrapper {
+   transition: max-height 1.2s ease-in-out;
+   overflow: hidden;
+   height: auto;
+   color: black;
+   background-color: currentColor;
+ }
+ 
+ .collapsed {
+   max-height: 0 !important;
+   
+ }

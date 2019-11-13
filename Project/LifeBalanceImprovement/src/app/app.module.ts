@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalendarPageModule } from './calendar/calendar.module';
@@ -26,6 +27,7 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     NgCalendarModule,
+    HttpClientModule,
     CalendarPageModule,
     AngularFireModule.initializeApp(environment.firebase),// imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
