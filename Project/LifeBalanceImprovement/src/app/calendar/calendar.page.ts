@@ -36,8 +36,8 @@ export class CalendarPage implements OnInit {
   }
 
   ViewChanged() {
-    // this.calendarService.setView(this.view);
-    // this.calendarService.getEventsFromDatabase();
+    this.calendarService.setView(this.view);
+    this.calendarService.getEventsFromDatabase();
     console.log('1');
   }
 

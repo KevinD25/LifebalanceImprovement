@@ -6,11 +6,7 @@
 
 <ion-content>
   <div class="main">
-    <select name="view" [(ngModel)]="view" (change)="ViewChanged()">
-      <option value="month">Maand</option>
-      <option value="week">Week</option>
-      <option value="day">Dag</option>
-    </select>
+    
     <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed(false)">+</button>
     <div class="calendar">
       <calendar [eventSource]="calendarService.eventSource"
