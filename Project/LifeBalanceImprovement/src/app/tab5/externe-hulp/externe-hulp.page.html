@@ -11,7 +11,7 @@
         
         <img [src]="item.Logo"/>
       
-      <ion-card-title>{{item.Title}}</ion-card-title>
+      <!--<ion-card-title>{{item.Title}}</ion-card-title>-->
       </ion-item>
     </ion-card-header>
 
@@ -21,7 +21,7 @@
 
           <ion-item name ="site" *ngIf="item.site">
             <ion-thumbnail>
-                <ion-img [src]="logos.sitePath"></ion-img>
+                <img [src]="sitePath"/>
             </ion-thumbnail>
               
               <ion-label>{{item.site}}</ion-label>
@@ -29,7 +29,7 @@
 
           <ion-item name="chat" *ngIf="item.chat">
               <ion-thumbnail>
-                  <ion-img [src]=logos.sitePath></ion-img>
+                  <img [src]="chatPath"/>
               </ion-thumbnail>
                 
                 <ion-label>{{item.chat}}</ion-label>
@@ -37,7 +37,7 @@
 
             <ion-item name = "mail" *ngIf="item.mail">
                 <ion-thumbnail>
-                    <ion-img [src]=logos.sitePath></ion-img>
+                    <img [src]="mailPath"/>
                 </ion-thumbnail>
                   
                   <ion-label>{{item.mail}}</ion-label>
@@ -45,7 +45,7 @@
 
               <ion-item name = "phone" *ngIf="item.phone">
                   <ion-thumbnail>
-                      <ion-img [src]=logos.sitePath></ion-img>
+                      <img [src]="phonePath"/>
                   </ion-thumbnail>
                     
                     <ion-label>{{item.phone}}</ion-label>
@@ -53,7 +53,7 @@
 
                 <ion-item name = "forum" *ngIf="item.forum">
                     <ion-thumbnail>
-                        <ion-img [src]=logos.sitePath></ion-img>
+                        <img [src]="forumPath"/>
                     </ion-thumbnail>
                       
                       <ion-label>{{item.forum}}</ion-label>
