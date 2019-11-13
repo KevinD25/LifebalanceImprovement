@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpandableComponent } from '../../expandable/expandable.component';
+import { ExpandableComponent} from '../../expandable/expandable.component';
 import { strictEqual } from 'assert';
 
 
