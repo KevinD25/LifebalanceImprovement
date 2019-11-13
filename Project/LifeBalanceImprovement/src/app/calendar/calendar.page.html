@@ -1,28 +1,67 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>calendar</ion-title>
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <calendar [eventSource]="eventSource"
-  [calendarMode]="calendar.mode"
-  [currentDate]="calendar.currentDate"
-  (onCurrentDateChanged)="onCurrentDateChanged($event)"
-  (onRangeChanged)="reloadSource(firstTime, lastTime)"
-  (onEventSelected)="onEventSelected($event)"
-  (onTitleChanged)="onViewTitleChanged($event)"
-  (onTimeSelected)="onTimeSelected($event)"
-  step="30">
+  <div class="main">
+    
+    <button ion-button color="light" class="addEvent" (click)="EventAddButtonPressed(false)">+</button>
+    <div class="calendar">
+      <calendar [eventSource]="calendarService.eventSource"
+      [calendarMode]="calendarService.calendar.mode"
+      [currentDate]="calendarService.calendar.currentDate"
+      [noEventsLabel]="calendarService.noEventsLabel"
+      [locale]="'nl-BE'"
+      [startingDayWeek]="calendarService.calendar.startingDayWeek"
+      [startingDayMonth]="calendarService.calendar.startingDayMonth"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onRangeChanged)="reloadSource(firstTime, lastTime)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)"
+      step="15">  
+      </calendar> 
+    </div>
+     
+  </div>
   
-</calendar>
 
-<ion-button (click)="EventAddButtonPressed()">Add event</ion-button>
-<form *ngIf="addEvent">
-  <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="titleEvent" name="titleEvent">
-  <p>Selecteer een starttijdstip</p><input [(ngModel)]="firstTime" type="time" name="firstTime">
-  <p>Selecteer een eindtijdstip</p><input [(ngModel)]="lastTime" type="time" name="lastTime">
-  <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="fullDay" name="fullDay">
-  <ion-button (click)="addNewEvent()">Save event</ion-button>
-</form>
 </ion-content>
+
+<div class="my-overlay" padding [hidden]="addEventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="addEventOverlayHidden">
+      <form *ngIf="calendarEventService.addEvent">
+        <div class="buttons">
+          <ion-button (click)="addNewEvent()" class="saveEventButton">Save event</ion-button>
+          <ion-button (click)="cancelCreatingEvent()" class="cancelEventButton" color="danger">Cancel</ion-button>
+        </div>
+        <div class="eventInfo">
+          <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
+          <p>Selecteer een starttijdstip</p>
+          <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="datetime-local" required name="firstTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="date" required name="firstTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="time" required name="firstTime">
+          <p>Selecteer een eindtijdstip</p>
+          <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="datetime-local" required name="lastTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="testDate" type="date" required name="lastTime">
+          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="time" required name="lastTime">
+          <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
+          <br>
+        </div>
+      </form>
+  </div>
+</div>
+
+<div class="my-overlay" padding [hidden]="eventOverlayHidden">
+  <div class="textBalloon" padding [hidden]="eventOverlayHidden">
+      <div *ngIf="calendarService.seeEvent">
+        <h3>{{calendarService.seeEventData.title}}</h3>
+        <p>Start: {{calendarService.startTime}}</p>
+        <p>Einde: {{calendarService.endTime}}</p>
+        <p>Label: {{calendarService.seeEventData.label}}</p>
+        <ion-button (click)="cancelViewingEvent()" class="cancelButton" color="danger">Cancel</ion-button>
+      </div>
+  </div>
+</div>
