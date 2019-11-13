@@ -8,6 +8,9 @@ import { ExpandableComponent } from '../expandable/expandable.component'
   declarations: [ExpandableComponent],
   imports: [
     CommonModule
+  ],
+  exports:[
+    ExpandableComponent
   ]
 })
 export class ExpandableModule { }
