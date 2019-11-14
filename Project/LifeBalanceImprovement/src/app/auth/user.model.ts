@@ -14,6 +14,7 @@ get tokenDuration(){
     if(!this.token){
         return 0;
     }
+    
     return  this.tokenExpirationDate.getTime() - new Date().getTime();
 }
 }
