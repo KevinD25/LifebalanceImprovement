@@ -111,7 +111,7 @@ export class CalendarEventService {
     this.addEvent = value;
   }
 
-  getUserId(): string {
+  getUserId() {
     // Plugins.Storage.get({key: 'authData'}).then( key => {
     //   let temp = key.value;
     //   temp = temp.replace(':', ',');
@@ -121,7 +121,7 @@ export class CalendarEventService {
     //   return newString[1].toString();
     // });
     // return null;
-    this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
+     this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
   }
 
   getAddEvent() {
