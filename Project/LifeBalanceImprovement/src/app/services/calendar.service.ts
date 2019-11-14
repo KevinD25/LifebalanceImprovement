@@ -4,6 +4,9 @@ import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl-BE';
 import { IEvent } from './calendar-event.service';
 import { TimeService } from './time.service';
+import { Plugins } from '@capacitor/core';
+import { AuthService } from '../auth/auth.service';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +21,7 @@ export class CalendarService {
   protected endTime: string;
   public disabled = [];
   public seeEventData: IEvent;
+  private currentUserId: string;
 
   public calendar = {
     mode: 'day',
@@ -30,7 +34,8 @@ export class CalendarService {
   protected addEvent: boolean;
   protected seeEvent: boolean;
 
-  constructor(private db: AngularFirestore, private timeSvc: TimeService) {
+  constructor(private db: AngularFirestore, private timeSvc: TimeService, private authSvc: AuthService) {
+    this.getUserId();
     // Constructor for variables
     this.setBooleans();
 
@@ -38,7 +43,25 @@ export class CalendarService {
     this.getEventsFromDatabase();
   }
 
+  getUserId() {
+    // Plugins.Storage.get({key: 'authData'}).then( key => {
+    //   let temp = key.value;
+    //   temp = temp.replace(':', ',');
+    //   console.log(temp);
+    //   let newString = temp.split(',');
+    //   this.currentUserId = newString[1].toString();
+    //   return newString[1].toString();
+    // });
+    // return null;
+    this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
+    return this.currentUserId;
+    
+  }
+
   getEventsFromDatabase() {
+    console.log(this.currentUserId);
+    this.currentUserId = this.currentUserId.replace('"', '');
+    console.log(this.currentUserId);
     this.db.collection('Events').snapshotChanges().subscribe(colSnap => {
       this.eventSource = [];
       colSnap.forEach(snap => {
@@ -47,7 +70,7 @@ export class CalendarService {
         event.startTime = event.startTime.toDate();
         event.endTime = event.endTime.toDate();
         event.label = '';
-        if (event.userId === 'uP2Bn2DDvYkodebwwej8') {
+        if (event.userId === this.currentUserId) {
           if (this.calendar.mode === 'day') {
             if (event.startTime.getDate() === this.calendar.currentDate.getDate()) {
               this.eventSource.push(event);

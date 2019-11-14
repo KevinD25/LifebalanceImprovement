@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../auth/auth.service';
+import { take, switchMap } from 'rxjs/operators';
+import { Plugins } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +16,13 @@ export class CalendarEventService {
   protected fullDay: boolean = false;
   protected eventSelected: boolean = false;
   protected addEvent: boolean;
+  private currentUserId: string;
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private authSvc: AuthService) {
+    this.getUserId();
+    console.log(this.currentUserId);
+    
+   }
 
   addNewEvent(checker: boolean) {
     let start = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), this.selectedDate.getDate());
@@ -43,15 +51,17 @@ export class CalendarEventService {
       end.setHours(+time[0]);
       end.setMinutes(+time[1]);
       console.log(this.firstTime);
-      
     }
 
+    console.log(this.currentUserId);
+    this.currentUserId = this.currentUserId.replace('"', '');
+    console.log(this.currentUserId);
     let event = {
       title: this.titleEvent,
       startTime: start,
       endTime: end,
       allDay: this.fullDay,
-      userId: 'uP2Bn2DDvYkodebwwej8',
+      userId: this.currentUserId,
       details: ''
     };
     this.db.collection(`Events`).add(event);
@@ -99,6 +109,19 @@ export class CalendarEventService {
 
   setAddEvent(value: boolean) {
     this.addEvent = value;
+  }
+
+  getUserId(): string {
+    // Plugins.Storage.get({key: 'authData'}).then( key => {
+    //   let temp = key.value;
+    //   temp = temp.replace(':', ',');
+    //   console.log(temp);
+    //   let newString = temp.split(',');
+    //   this.currentUserId = newString[1].toString();
+    //   return newString[1].toString();
+    // });
+    // return null;
+    this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
   }
 
   getAddEvent() {

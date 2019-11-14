@@ -41,11 +41,9 @@
           <input type="text" placeholder="Wat gaat u doen?" [(ngModel)]="calendarEventService.titleEvent" name="titleEvent">
           <p>Selecteer een starttijdstip</p>
           <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="datetime-local" required name="firstTime">
-          <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="date" required name="firstTime">
           <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.firstTime" type="time" required name="firstTime">
           <p>Selecteer een eindtijdstip</p>
           <input *ngIf="!hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="datetime-local" required name="lastTime">
-          <input *ngIf="hasDateBeenPicked" [(ngModel)]="testDate" type="date" required name="lastTime">
           <input *ngIf="hasDateBeenPicked" [(ngModel)]="calendarEventService.lastTime" type="time" required name="lastTime">
           <p>Of duurt dit evenement heel de dag?</p><input type="checkbox" [(ngModel)]="calendarEventService.fullDay" name="fullDay">
           <br>
