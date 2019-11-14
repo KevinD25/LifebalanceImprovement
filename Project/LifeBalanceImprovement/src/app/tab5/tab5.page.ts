@@ -22,7 +22,7 @@ export class Tab5Page {
 
   onLogout() {
 this.authService.logout();
-this.router.navigateByUrl('');
+this.router.navigateByUrl('/auth');
   }
 
   goToExterneHulp(){
