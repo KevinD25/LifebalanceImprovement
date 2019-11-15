@@ -123,7 +123,7 @@ export class CalendarEventService {
     //   return newString[1].toString();
     // });
     // return null;
-    this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
+     this.authSvc.userId.pipe( take(1)).subscribe(userId => { this.currentUserId = userId});
   }
 
   getAddEvent() {
