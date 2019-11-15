@@ -14,8 +14,8 @@ import { take } from 'rxjs/operators';
 export class CalendarService {
 
   // Calendar necessities
-  protected eventSource = [];
-  protected noEventsLabel = 'Niets gepland';
+  public eventSource = [];
+  public noEventsLabel = 'Niets gepland';
   protected locale = registerLocaleData(localeNl);
   protected startTime: string;
   protected endTime: string;
@@ -31,8 +31,8 @@ export class CalendarService {
   };
 
   // boolean types
-  protected addEvent: boolean;
-  protected seeEvent: boolean;
+  public addEvent: boolean;
+  public seeEvent: boolean;
 
   constructor(private db: AngularFirestore, private timeSvc: TimeService, private authSvc: AuthService) {
     this.getUserId();

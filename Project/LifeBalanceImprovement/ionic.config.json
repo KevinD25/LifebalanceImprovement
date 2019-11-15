@@ -1,5 +1,8 @@
 {
   "name": "LifeBalanceImprovement",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

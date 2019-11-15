@@ -9,13 +9,15 @@ import { Plugins } from '@capacitor/core';
 })
 export class CalendarEventService {
   
-  protected selectedDate = new Date();
-  protected titleEvent: string;
-  public firstTime: string = '';
-  public lastTime: string = '';
   protected fullDay: boolean = false;
   protected eventSelected: boolean = false;
-  protected addEvent: boolean;
+  public addEvent: boolean;
+  protected selectedDate = new Date();
+  protected titleEvent: string;
+  
+  public firstTime: string = '';
+  public lastTime: string = '';
+ 
   private currentUserId: string;
 
   constructor(private db: AngularFirestore, private authSvc: AuthService) {
@@ -111,7 +113,7 @@ export class CalendarEventService {
     this.addEvent = value;
   }
 
-  getUserId(): string {
+  getUserId() /*string*/ {
     // Plugins.Storage.get({key: 'authData'}).then( key => {
     //   let temp = key.value;
     //   temp = temp.replace(':', ',');

@@ -24,7 +24,7 @@ export class CalendarPage implements OnInit {
   hasDateBeenPicked: boolean = false;
   testDate: string;
 
-  constructor(private db: AngularFirestore, protected calendarService: CalendarService, protected calendarEventService: CalendarEventService) {
+  constructor(private db: AngularFirestore, public calendarService: CalendarService, public calendarEventService: CalendarEventService) {
     this.calendarEventService.setAddEvent(false);
     this.hideAddEventOverlayTrue();
     this.onTitleChanged(calendarService.getTitle(), this.selectedDate);
